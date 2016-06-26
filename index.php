@@ -1,3 +1,4 @@
+
 <?php
 // Page functionality
 include('db/config.php');
@@ -34,7 +35,13 @@ switch($q) {
 	case "delete_paper": {
 		$pageAddition = 'Delete paper';
 		$page = 'content/delete_paper.php';
-	} break;
+	} 
+	break;
+	case "calculate_back": {
+		$pageAddition = 'Calculate back';
+		$page = 'content/calculate_back.php';
+	}
+	break;
 	// Default view
 	default : { 
 		$pageAddition = 'Administrate paper';

@@ -64,4 +64,9 @@ define('BUTTON_DELETE_NO',	'No, I changed my mind');
 
 // Update paper
 define('UPDATE_PAPER_TITLE',	'Update paper');
+
+// Calculate back
+define('CALCULATE_BACK_TITLE',	'Calculate width of back with paper: ');
+define('NUMBER_PAGES',			'Number of pages');
+define('CALCULATE',	    'Calculate');
 ?>

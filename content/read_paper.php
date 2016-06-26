@@ -15,7 +15,7 @@ if ( $id === null ) {
 }
 
 ?>
-<!-- Heading -->
+		<!-- Heading -->
 		<div class="row">
 			<h1 class="text-center empty-row-after"><?=READ_PAPER_TITLE;?> <?=$data['brand'];?> <?=$data['type'];?><?=$data['grammage'];?></h1>
 		</div>

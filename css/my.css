@@ -5,3 +5,35 @@
 .errorfield {
 	background-color: #fdd;
 }
+.red {
+	color: #f00;
+}
+.big {
+	font-size: 1.5em;
+}
+.right-justified {
+	text-align: right;
+}
+.small-width {
+	width: 64px;
+}
+
+/* Bootstrap colors */
+.success_green {
+	color: #5cb85c;
+}
+.default_gray {
+	color: #f9f9f9;
+}
+.primary_blue {
+	color: #428bca;
+}
+.info_blue {
+	color: #5bc0de;
+}
+.warning_orange {
+	color: #f0ad4e;
+}
+.danger_red {
+	color: #d9534f;
+}

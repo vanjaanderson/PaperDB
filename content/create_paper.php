@@ -40,7 +40,7 @@ if (!empty($_POST)) {
 
 	// Execute database insertion if input is valid
 	if($valid) {		
-		input_to_database('INSERT INTO paper (brand, type, grammage, my, color, supplier) values(?,?,?,?,?,?)', "$brand, $type, $grammage, $my, $color, $supplier");
+		input_to_database('INSERT INTO paper (brand, type, grammage, my, color, supplier) VALUES(?,?,?,?,?,?)', "$brand, $type, $grammage, $my, $color, $supplier");
 		// Redirect to startpage after insertion
 		header('Location:?q=start');
 	}

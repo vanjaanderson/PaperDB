@@ -15,14 +15,11 @@
 				</thead>
 				<tbody>
 <?php
-// Include database settings and class file
-// include('db/CDatabase.php');
- 
-// Database connection
+// Query database to select all papers
 $pdo = CDatabase::connect();
-// Query
 $sql = 'SELECT * FROM paper ORDER BY brand ASC';
-// Loop through database
+// Loop through result.
+// Maybe it would be cleaner code with heredoc: http://php.net/manual/en/language.types.string.php
 foreach ($pdo->query($sql) as $row) {
 	echo '<tr>';
 	echo '<td>'.$row['brand'].' '.$row['type'].$row['grammage'].'</td>';
@@ -31,14 +28,16 @@ foreach ($pdo->query($sql) as $row) {
 	// Read link
 	echo '<td width="260px">';
 	echo '<a class="btn btn-warning btn-xs" role="button" href="?q=read_paper&amp;id='.$row['id'].'">'.BUTTON_READ.'</a> ';
+	// Upadate link
 	echo '<a class="btn btn-success btn-xs" role="button" href="?q=update_paper&amp;id='.$row['id'].'">'.BUTTON_UPDATE.'</a> ';
+	// Delete button
 	echo '<a class="btn btn-danger btn-xs" role="button" href="?q=delete_paper&amp;id='.$row['id'].'&amp;brand='.$row['brand'].'&amp;type='.$row['type'].'&amp;grammage='.$row['grammage'].'">'.BUTTON_DELETE.'</a> ';
-	echo '<a class="btn btn-info btn-xs" role="button" href="?q=calculate_back&amp;id='.$row['id'].'&amp;grammage='.$row['grammage'].'">'.BUTTON_CALCULATE_BACK.'</a> ';
+	// Calculate back button
+	echo '<a class="btn btn-info btn-xs" role="button" href="?q=calculate_back&amp;id='.$row['id'].'&amp;brand='.$row['brand'].'&amp;type='.$row['type'].'&amp;my='.$row['my'].'">'.BUTTON_CALCULATE_BACK.'</a> ';
 	echo '</td>';
 	echo '</tr>';
 }
 CDatabase::disconnect();
-
 ?>
 				</tbody>
 			</table>

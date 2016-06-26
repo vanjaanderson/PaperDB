@@ -74,11 +74,12 @@ table user
 - Delete the sample data on the database and insert your own.
 
 ### To-Do
-- Create a count-back-function, high priority.
 - Create an administration interface with different roles.
 - Administrate suppliers and users.
 - Paginator for limiting database ouput on each page.
+- Sort columns papername, paper thickness and paper density.
 - Feature for uploading images.
 
 ### Changelog
+- 2016-06-26 – Version 0.2 – Count-back-function
 - 2016-06-22 – Version 0.1 – Developing stage, not yet working version.
