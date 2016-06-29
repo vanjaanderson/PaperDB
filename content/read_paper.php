@@ -17,7 +17,7 @@ if ( $id === null ) {
 ?>
 		<!-- Heading -->
 		<div class="row">
-			<h1 class="text-center empty-row-after"><?=READ_PAPER_TITLE;?> <?=$data['brand'];?> <?=$data['type'];?><?=$data['grammage'];?></h1>
+			<h1 class="text-center empty-row-after"><?=READ_PAPER_TITLE;?> <span class="success_green"><?=$data['brand'];?> <?=$data['type'];?><?=$data['grammage'];?></span></h1>
 		</div>
 		<form class="form-horizontal" action="#" method="post" role="form">
 			<!-- Name of paper -->
@@ -65,8 +65,10 @@ if ( $id === null ) {
 			<!-- Buttons -->
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-6">
+					<?php if($_SESSION['login'] === 'logged_in'):?>
 					<a class="btn btn-success" role="button" href="?q=update_paper&amp;id=<?=$data['id'];?>"><?=BUTTON_UPDATE;?> this record</a>
 					<a class="btn btn-danger" role="button" href="?q=delete_paper&amp;id=<?=$data['id'];?>&amp;brand=<?=$data['brand'];?>&amp;type=<?=$data['type'];?>&amp;grammage=<?=$data['grammage'];?>"><?=BUTTON_DELETE;?> this record</a>
+					<?php endif;?>
 					<a class="btn btn-default" role="button" href="<?=DOCUMENT_ROOT;?>"><?=BUTTON_BACK;?></a>
 				</div>
 			</div>

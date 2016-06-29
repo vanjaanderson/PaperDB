@@ -1,5 +1,9 @@
 <?php
-//
+// Check if user is logged in
+if($_SESSION['login']!=='logged_in'):
+	header('Location: ?q=start');
+endif;
+
 $id = 0;
 // Fetch the id from get parameter
 if ( !empty($_GET['id'])) {
@@ -20,7 +24,7 @@ if (!empty($_POST)) {
 ?>
 		<!-- Heading -->
 		<div class="row">
-			<h1 class="text-center empty-row-after"><?=DELETE_PAPER_TITLE;?> <?=$brand;?> <?=$type;?><?=$grammage;?></h1>
+			<h1 class="text-center empty-row-after"><?=DELETE_PAPER_TITLE;?> <span class="danger_red"><?=$brand;?> <?=$type;?><?=$grammage;?></span></h1>
 		</div>
 		<div class="row">
 			<form class="form-horizontal" action="?q=delete_paper" method="post" role="form">

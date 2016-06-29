@@ -1,7 +1,23 @@
+<?php
+	
+?>
 		<div class="row">
 			<h1 class="text-center"><?=WEB_PAGE_TITLE;?></h1>
 			<!-- Create button -->
-			<p><a href="?q=create_paper" class="btn btn-success">Create paper</a></p>
+			<p class="text-right">
+				<!-- User priviliges -->
+				<?php if($_SESSION['login']==='logged_in'):?>
+					<a href="?q=create_paper" class="btn btn-success"><?=BUTTON_CREATE_PAPER;?></a>
+					<!-- Administrator extra priviliges -->
+					<?php if($_SESSION['role']==='administrator'):?>
+						<a href="?q=users" class="btn btn-primary"><?=BUTTON_USER;?></a>
+						<a href="?q=suppliers" class="btn btn-info"><?=BUTTON_SUPPLIER;?></a>
+					<?php endif;?>
+					<a href="?q=logout" class="btn btn-default"><?=BUTTON_LOGOUT;?></a>
+				<?php else:?>
+					<a href="?q=login" class="btn btn-default"><?=BUTTON_LOGIN;?></a>
+				<?php endif;?>
+			</p>
 		</div>
 		<div class="row">
 			<table class="table table-striped table-bordered">
@@ -10,7 +26,7 @@
 						<th><?=PAPER_NAME;?></th>
 						<th><?=PAPER_THICKNESS;?></th>
 						<th><?=PAPER_DENSITY;?></th>
-						<th><?=PAPER_ACTIVITY;?></th>
+						<th><?=ACTIVITY;?></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -28,10 +44,13 @@ foreach ($pdo->query($sql) as $row) {
 	// Read link
 	echo '<td width="260px">';
 	echo '<a class="btn btn-warning btn-xs" role="button" href="?q=read_paper&amp;id='.$row['id'].'">'.BUTTON_READ.'</a> ';
+	// Check if user role is Admin or just "user"
+	if($_SESSION['login']==='logged_in'):
 	// Upadate link
 	echo '<a class="btn btn-success btn-xs" role="button" href="?q=update_paper&amp;id='.$row['id'].'">'.BUTTON_UPDATE.'</a> ';
 	// Delete button
 	echo '<a class="btn btn-danger btn-xs" role="button" href="?q=delete_paper&amp;id='.$row['id'].'&amp;brand='.$row['brand'].'&amp;type='.$row['type'].'&amp;grammage='.$row['grammage'].'">'.BUTTON_DELETE.'</a> ';
+	endif;
 	// Calculate back button
 	echo '<a class="btn btn-info btn-xs" role="button" href="?q=calculate_back&amp;id='.$row['id'].'&amp;brand='.$row['brand'].'&amp;type='.$row['type'].'&amp;my='.$row['my'].'">'.BUTTON_CALCULATE_BACK.'</a> ';
 	echo '</td>';

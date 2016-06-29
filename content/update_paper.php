@@ -1,4 +1,8 @@
 <?php
+// Check if user is logged in
+if($_SESSION['login']==!'logged_in'):
+	header('Location: ?q=start');
+endif;
 
 $id = null;
 

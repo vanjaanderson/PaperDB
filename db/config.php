@@ -25,20 +25,20 @@ define('DOCUMENT_ROOT', '/PaperDB');
 define('WEB_PAGE_TITLE', 'Paper DB CRUD');
 
 // Text strings in the view
-define('PAPER_NAME', 		'Full Name of Paper');
+define('PAPER_NAME', 		'Full name of paper');
 define('PAPER_THICKNESS', 	'Paper thickness (1 &#956;mm = 0,001 mm)');
 define('PAPER_DENSITY', 	'Paper density (grammage)');
-define('PAPER_ACTIVITY', 	'Activity');
-define('BUTTON_CREATE_PAPER','Create Paper');
+define('ACTIVITY', 			'Activity');
+define('BUTTON_CREATE_PAPER','Create paper');
 define('BUTTON_READ',		'Read');
 define('BUTTON_UPDATE',		'Update');
 define('BUTTON_DELETE',		'Delete');
-define('BUTTON_CALCULATE_BACK', 'Calculate Back');
+define('BUTTON_CALCULATE_BACK', 'Calculate back');
 define('BUTTON_SAVE',		'Save');
-define('BUTTON_BACK',		'Go Back');
+define('BUTTON_BACK',		'Go back');
 
 // Create Paper
-define('CREATE_PAPER_TITLE','Create Paper');
+define('CREATE_PAPER_TITLE','Create paper');
 define('CREATE_PAPER_SUB_TITLE', 'mandatory fields marked with &ast;');
 define('BRAND_TITLE',		'Brand');
 define('BRAND_PLACEHOLDER', 'Type the paper&rsquo;s brand here');
@@ -69,4 +69,35 @@ define('UPDATE_PAPER_TITLE',	'Update paper');
 define('CALCULATE_BACK_TITLE',	'Calculate width of back with paper: ');
 define('NUMBER_PAGES',			'Number of pages');
 define('CALCULATE',	    'Calculate');
+
+// Login page
+define('LOGIN_TITLE', 	'Login');
+define('USERNAME',		'Username');
+define('PASSWORD',		'Password');
+define('BUTTON_LOGIN',	'Login');
+define('BUTTON_LOGOUT',	'Logout');
+
+// Administrator features
+define('BUTTON_USER',	'Administrate users');
+define('USERS_TITLE', 	'Administrate users');
+define('CREATE_USER_TITLE', 'Create user');
+define('BUTTON_CREATE_USER', 'Create user');
+define('USER_ROLE',		'User privileges role');
+define('USER_TITLE',	'Username');
+define('USER_PLACEHOLDER', 'Username');
+define('PASSWORD_TITLE','Password');
+define('NEW_PASSWORD_TITLE','New password');
+define('PASSWORD_AGAIN','Type password again');
+define('UPDATE_USER_TITLE', 'Update user ');
+define('DELETE_USER_TITLE','Delete user ');
+
+define('BUTTON_SUPPLIER','Administrate suppliers');
+define('SUPPLIERS_TITLE', 'Administrate suppliers');
+define('BUTTON_CREATE_SUPPLIER', 'Create supplier');
+define('CREATE_SUPPLIER_TITLE', 'Create supplier');
+define('SUPPLIER_NAME', 'Supplier name');
+define('SUPPLIER_PLACEHOLDER', 'Supplier name');
+define('UPDATE_SUPPLIER_TITLE', 'Update supplier ');
+define('DELETE_SUPPLIER_TITLE','Delete supplier ');
+
 ?>

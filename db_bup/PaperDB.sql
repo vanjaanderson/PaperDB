@@ -31,11 +31,21 @@ CREATE TABLE IF NOT EXISTS supplier (
   PRIMARY KEY (name)
 ) ENGINE=InnoDB;
 
+-- Create roles for the users
+CREATE TABLE IF NOT EXISTS role (
+  role varchar(24) NOT NULL,
+  PRIMARY KEY (role)
+) ENGINE=InnoDB;
+
 -- Create users to administrate the db
 CREATE TABLE IF NOT EXISTS user (
+  id int(11) NOT NULL AUTO_INCREMENT,
   user char(6) NOT NULL,
-  pwd char(24) NOT NULL,
-  PRIMARY KEY (user, pwd)
+  pwd char(32) NOT NULL,
+  role varchar(24) NOT NULL DEFAULT 'user',
+  PRIMARY KEY (id),
+  -- foreign key
+  CONSTRAINT user_role_fk FOREIGN KEY (role) REFERENCES role(role)
 ) ENGINE=InnoDB;
 
 -- Create paper table

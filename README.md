@@ -9,10 +9,11 @@ database PaperDB
 +-------------------+
 | brand             |
 | color             |
-| paper             |
 | supplier          |
 | type              |
+| role              |
 | user              |
+| paper             |
 +-------------------+
 
 table brand
@@ -29,19 +30,6 @@ table color
 | color | varchar(45) | NO   | PRI | NULL    |       |
 +-------+-------------+------+-----+---------+-------+
 
-table paper
-+----------+-------------+------+-----+---------+-----------------+
-| Field    | Type        | Null | Key | Default | Extra           |
-+----------+-------------+------+-----+---------+-----------------+
-| id       | int(11)     | NO   | PRI | NULL    |  auto_increment |
-| brand    | varchar(45) | NO   | MUL | NULL    |                 |
-| type     | varchar(45) | NO   | MUL | NULL    |                 |
-| color    | varchar(45) | YES  | MUL |         |                 |
-| supplier | varchar(45) | NO   | MUL | NULL    |                 |
-| grammage | int(4)      | NO   | MUL | NULL    |                 |
-| my       | int(4)      | NO   |     | NULL    |                 |
-+----------+-------------+------+-----+---------+-----------------+
-
 table supplier
 +-------+-------------+------+-----+---------+-------+
 | Field | Type        | Null | Key | Default | Extra |
@@ -56,13 +44,35 @@ table type
 | type  | varchar(45) | NO   | PRI | NULL    |       |
 +-------+-------------+------+-----+---------+-------+
 
+table role
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| role  | varchar(24) | NO   | PRI | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+
 table user
-+-------+----------+------+-----+---------+-------+
-| Field | Type     | Null | Key | Default | Extra |
-+-------+----------+------+-----+---------+-------+
-| user  | char(6)  | NO   | PRI | NULL    |       |
-| pwd   | char(24) | NO   | PRI | NULL    |       |
-+-------+----------+------+-----+---------+-------+
++-------+-------------+------+-----+---------+----------------+
+| Field | Type        | Null | Key | Default | Extra          |
++-------+-------------+------+-----+---------+----------------+
+| id    | int(11)     | NO   | PRI | NULL    | auto_increment |
+| name  | char(6)     | YES  |     | NULL    |                |
+| pwd   | char(32)    | YES  |     | NULL    |                |
+| role  | varchar(24) | NO   | MUL | user    |                |
++-------+-------------+------+-----+---------+----------------+
+
+table paper
++----------+-------------+------+-----+---------+-----------------+
+| Field    | Type        | Null | Key | Default | Extra           |
++----------+-------------+------+-----+---------+-----------------+
+| id       | int(11)     | NO   | PRI | NULL    |  auto_increment |
+| brand    | varchar(45) | NO   | MUL | NULL    |                 |
+| type     | varchar(45) | NO   | MUL | NULL    |                 |
+| color    | varchar(45) | YES  | MUL |         |                 |
+| supplier | varchar(45) | NO   | MUL | NULL    |                 |
+| grammage | int(4)      | NO   | MUL | NULL    |                 |
+| my       | int(4)      | NO   |     | NULL    |                 |
++----------+-------------+------+-----+---------+-----------------+
 </pre>
 
 
@@ -76,6 +86,7 @@ table user
 ### To-Do
 - Create an administration interface with different roles.
 - Administrate suppliers and users.
+– Administrate color, brand and type.
 - Paginator for limiting database ouput on each page.
 - Sort columns papername, paper thickness and paper density.
 - Feature for uploading images.

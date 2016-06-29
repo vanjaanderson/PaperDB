@@ -9,13 +9,20 @@ if (!empty($_GET)) {
 }
 // Define default value for paper
 $pages = !empty($_POST['pages'])?$_POST['pages']:100;
+
+// Make number of pages even (i.e. if number is odd, add one to make it even)
+if ($pages%2 === 1) {
+	$pages += 1;
+}
+
 // Calculate result
 $result = $pages/2*$my/1000;
 
 ?>
 		<!-- Heading -->
 		<div class="row">
-			<h1 class="text-center empty-row-after"><?=CALCULATE_BACK_TITLE;?> <?=$_GET['brand'];?> <?=$_GET['type'];?><?=$_GET['my'];?></h1>
+			<h1 class="text-center"><?=CALCULATE_BACK_TITLE;?> <span class="success_green"><?=$_GET['brand'];?> <?=$_GET['type'];?><?=$_GET['my'];?></span></h1>
+			<p class="text-center empty-row-after">Number of pages must be even, if you enter an odd value, the value will increase by one. Usually a printed matter with up to 64 pages will not have a back.</p>
 		</div>
 		<form class="form-horizontal big text-center" action="#" method="post" role="form">
 			<div class="form-group">

@@ -1,11 +1,10 @@
 <?php
+// Check if user is logged in
+if($_SESSION['login']!=='logged_in'):
+	header('Location: ?q=start');
+endif;
 
 if (!empty($_POST)) {
-	// Keep track validation errors
-    $brandError 	= null;
-    $grammageError 	= null;
-    $myError 		= null;
-
     // Keep track post values and sanitize them
 	$brand 			= htmlspecialchars($_POST['brand']);
 	$type			= htmlspecialchars($_POST['type']);
@@ -18,22 +17,18 @@ if (!empty($_POST)) {
 	// Set class errorfield on fields that does not validate
     $valid = true;
     if (empty($brand)) {
-        $brandError = true;
         $valid 		= false;
         $brandClass = 'errorfield';
     }
     if (empty($type)) {
-        $typeError 	= true;
         $valid 		= false;
         $typeClass 	= 'errorfield';
     }
     if (empty($grammage)) {
-        $grammageError 	= true;
         $valid 			= false;
         $grammageClass	= 'errorfield';
     }
     if (empty($my)) {
-        $myError 	= true;
         $valid 		= false;
         $myClass 	= 'errorfield';
     }
@@ -91,7 +86,15 @@ if (!empty($_POST)) {
 				<label for="supplier" class="control-label col-sm-2"><?=SUPPLIER_TITLE;?></label>
 				<div class="controls col-sm-6">
 					<select class="form-control" name="supplier" id="supplier">
-						<option value="<?=SUPPLIER_DEFAULT;?>" selected="selected"><?=SUPPLIER_DEFAULT;?></option>
+						<!-- Fetch suppliers from database -->
+						<?php
+						$pdo = CDatabase::connect();
+						$sql = 'SELECT * FROM supplier ORDER BY name ASC';
+						foreach ($pdo->query($sql) as $row) {
+							echo '<option value="'.$row['name'].'">'.$row['name'].'</option>';
+						}
+						CDatabase::disconnect();
+						?>
 					</select>
 				</div>
 			</div>

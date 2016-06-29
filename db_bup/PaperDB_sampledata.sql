@@ -67,8 +67,24 @@ INSERT INTO color (color) VALUES
 INSERT INTO supplier (name) VALUES
 	('Antalis'
 );
-
+ 
 -- Insert paper
-INSERT INTO paper (brand, type, grammage, my, color, supplier) VALUES (
-	'Cocoon', 'Offset', 133, 100, 'Natur', 'Antalis'
+INSERT INTO paper (brand, type, grammage, my, color, supplier) VALUES 
+	('Cocoon', 'Offset', 133, 100, 'Natur', 'Antalis'),
+	('Cyclus', 'PrePrint', 150, 90, '', 'Antalis'),
+	('Scandia 2000', 'Silk', 200, 180, '', 'Antalis'
+);
+
+-- Insert roles
+INSERT INTO role (role) VALUES
+	('administrator'),
+	('user'
+);
+
+-- Insert user
+INSERT INTO user (user, pwd, role) VALUES 
+	-- Admin, admin, administrator
+	('Admin', '21232f297a57a5a743894a0e4a801fc3', 'administrator'),
+	-- User, user, user
+	('User', 'ee11cbb19052e40b07aac0ca060c23ee', 'user'
 );
