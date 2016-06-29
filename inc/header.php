@@ -3,10 +3,10 @@
 	Description: CRUD framework for administrating paper databases
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 	Author: Vanja Maria Anderson
-	Date: 2016-06-15
-	Version: 0.1
+	Date: 2016-06-29
+	Version: 0.3
 	Website: http://vanjaswebb.se
-	Development: https://github.com/vanjaanderson/
+	Development: https://github.com/vanjaanderson/PaperDB
 ********************************************************************************** 
 -->
 <!DOCTYPE html>
@@ -30,4 +30,5 @@
 		<!-- Scripts in footer -->
 	</head>
 	<body>
-		<div class="container">
+		<section class="container">
+			<article>

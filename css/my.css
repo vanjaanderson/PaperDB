@@ -1,6 +1,9 @@
 /* My CSS */
 .empty-row-after {
-	margin-bottom: 1.5em;
+	padding-bottom: 24px;
+}
+.no-space-after {
+  margin-bottom: 0 !important;
 }
 .errorfield {
 	background-color: #fdd;
@@ -9,7 +12,7 @@
 	color: #f00;
 }
 .big {
-	font-size: 1.5em;
+	font-size: 2em;
 }
 .right-justified {
 	text-align: right;
@@ -17,8 +20,35 @@
 .small-width {
 	width: 64px;
 }
+article {
+  min-height: 560px;
+  margin: 1em 1em 0em;
+}
+.activity-column {
+  width: 263px;
+}
+.start-row {
+  margin-top: -30px;
+  height: 22px;
+}
+#button-and-text-row p {
+  padding: 0px;
+}
+#calculate-well {
+  margin: 50px auto 0px;
+  max-width: 750px;
+}
 
 /* Login form */
+#login {
+  position: relative;
+  top: 100px;
+  max-width: 500px;
+  margin: 0px auto;
+}
+#login_buttons {
+  margin-top: 3em;
+}
 .form-signin {
   max-width: 330px;
   padding: 15px;

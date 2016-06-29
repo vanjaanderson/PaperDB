@@ -1,8 +1,6 @@
 <?php
-// Check if user role is administrator
-if($_SESSION['role']!=='administrator'):
-	header('Location: ?q=start');
-endif;
+// Only let users with admin privileges access this page
+allow_admin_privileges();
 
 $name = 0;
 // Fetch the id from get parameter
@@ -25,13 +23,15 @@ if (!empty($_POST)) {
 		</div>
 		<div class="row">
 			<form class="form-horizontal" action="" method="post" role="form">
-				<div class="controls col-sm-12">
-					<input type="hidden" name="name" value="<?=$name;?>" />
+				<div class="form-group">
+					<div class="col-sm-offset-3 col-sm-6">
+						<input type="hidden" name="name" value="<?=$name;?>" />
 					<div class="alert alert-danger" role="alert"><?=BUTTON_DELETE;?> <strong><?=$name;?>?</strong></div>
 				</div>
+				</div>
 				<div class="form-group">
-					<div class="col-sm-offset-2 col-sm-6">
-						<button type="submit" class="btn btn-default"><?=BUTTON_DELETE_YES;?></button>
+					<div class="col-sm-offset-3 col-sm-6">
+						<button type="submit" class="btn btn-success"><?=BUTTON_DELETE_YES;?></button>
 						<a class="btn btn-danger" role="button" href="?q=suppliers"><?=BUTTON_DELETE_NO;?></a>
 					</div>
 				</div>

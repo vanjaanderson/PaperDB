@@ -1,16 +1,14 @@
 <?php
-// Check if user role is administrator
-if($_SESSION['role']!=='administrator'):
-	header('Location: ?q=start');
-endif;
+// Only let users with admin privileges access this page
+allow_admin_privileges();
 ?>
 		<div class="row">
-			<h1 class="text-center"><?=USERS_TITLE;?></h1>
+			<h1 class="text-center empty-row-after"><?=USERS_TITLE;?></h1>
 			<!-- Create button -->
-			<p class="text-right">
-				<a href="?q=create_user" class="btn btn-success"><?=BUTTON_CREATE_USER;?></a>
-				<a href="?q=start" class="btn btn-info"><?=BUTTON_BACK;?></a>
-				<a href="?q=logout" class="btn btn-default"><?=BUTTON_LOGOUT;?></a>
+			<p class="start-row text-right">
+				<a href="?q=create_user" class="btn btn-xs btn-success"><?=BUTTON_CREATE_USER;?></a>
+				<a href="?q=start" class="btn btn-xs btn-info"><?=BUTTON_BACK;?></a>
+				<a href="?q=logout" class="btn btn-xs btn-default"><?=BUTTON_LOGOUT;?></a>
 			</p>
 		</div>
 		<div class="row">
@@ -34,7 +32,7 @@ foreach ($pdo->query($sql) as $row) {
 	echo '<td>'.$row['user'].'</td>';
 	echo '<td>'.$row['role'].'</td>';
 	// Read link
-	echo '<td width="260px">';
+	echo '<td class="activity-column">';
 	// Upadate link
 	echo '<a class="btn btn-success btn-xs" role="button" href="?q=update_user&amp;id='.$row['id'].'&amp;user='.$row['user'].'&amp;role='.$row['role'].'">'.BUTTON_UPDATE.'</a> ';
 	// Delete button

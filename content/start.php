@@ -1,21 +1,19 @@
-<?php
-	
-?>
 		<div class="row">
-			<h1 class="text-center"><?=WEB_PAGE_TITLE;?></h1>
+			<h1 class="text-center empty-row-after"><?=WEB_PAGE_TITLE;?></h1>
 			<!-- Create button -->
-			<p class="text-right">
+			<p class="start-row text-right">
 				<!-- User priviliges -->
-				<?php if($_SESSION['login']==='logged_in'):?>
-					<a href="?q=create_paper" class="btn btn-success"><?=BUTTON_CREATE_PAPER;?></a>
+				<?php if(isset($_SESSION['role'])):?>
+					<a href="?q=create_paper" class="btn btn-xs btn-success"><?=BUTTON_CREATE_PAPER;?></a>
 					<!-- Administrator extra priviliges -->
 					<?php if($_SESSION['role']==='administrator'):?>
-						<a href="?q=users" class="btn btn-primary"><?=BUTTON_USER;?></a>
-						<a href="?q=suppliers" class="btn btn-info"><?=BUTTON_SUPPLIER;?></a>
+						<a href="?q=users" class="btn btn-xs btn-primary"><?=BUTTON_USER;?></a>
+						<a href="?q=suppliers" class="btn btn-xs btn-info"><?=BUTTON_SUPPLIER;?></a>
 					<?php endif;?>
-					<a href="?q=logout" class="btn btn-default"><?=BUTTON_LOGOUT;?></a>
+					<a href="?q=logout" class="btn btn-xs btn-default"><?=BUTTON_LOGOUT;?></a>
 				<?php else:?>
-					<a href="?q=login" class="btn btn-default"><?=BUTTON_LOGIN;?></a>
+					<!-- Login button currently disabled, login with /admin -->
+					<!-- <a href="?q=login" class="btn btn-default"><?=BUTTON_LOGIN;?></a> -->
 				<?php endif;?>
 			</p>
 		</div>
@@ -30,7 +28,7 @@
 					</tr>
 				</thead>
 				<tbody>
-<?php
+<?php 
 // Query database to select all papers
 $pdo = CDatabase::connect();
 $sql = 'SELECT * FROM paper ORDER BY brand ASC';
@@ -42,11 +40,11 @@ foreach ($pdo->query($sql) as $row) {
 	echo '<td>'.$row['my'].' &#956;mm</td>';
 	echo '<td>'.$row['grammage'].' g/m&#178;</td>';
 	// Read link
-	echo '<td width="260px">';
+	echo '<td class="activity-column">';
 	echo '<a class="btn btn-warning btn-xs" role="button" href="?q=read_paper&amp;id='.$row['id'].'">'.BUTTON_READ.'</a> ';
 	// Check if user role is Admin or just "user"
-	if($_SESSION['login']==='logged_in'):
-	// Upadate link
+	if(isset($_SESSION['role'])):
+	// Update link
 	echo '<a class="btn btn-success btn-xs" role="button" href="?q=update_paper&amp;id='.$row['id'].'">'.BUTTON_UPDATE.'</a> ';
 	// Delete button
 	echo '<a class="btn btn-danger btn-xs" role="button" href="?q=delete_paper&amp;id='.$row['id'].'&amp;brand='.$row['brand'].'&amp;type='.$row['type'].'&amp;grammage='.$row['grammage'].'">'.BUTTON_DELETE.'</a> ';
@@ -56,8 +54,7 @@ foreach ($pdo->query($sql) as $row) {
 	echo '</td>';
 	echo '</tr>';
 }
-CDatabase::disconnect();
-?>
+CDatabase::disconnect(); ?>
 				</tbody>
 			</table>
 		</div>

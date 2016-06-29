@@ -1,87 +1,87 @@
 <?php
-// Start session
+// Start session (used for user login)
 session_start();
 
-// echo $_SESSION['role'];
-
 // Page functionality
-include('db/config.php');
-include('db/CDatabase.php');
-include('script/functions.php'); 
+require('db/config.php');
+require('db/CDatabase.php');
+require('script/functions.php'); 
 
+// Page content variables' declarations (to avoid warnings and notices, depending on web-server's preferences)
 $q = null;
 $page = "";
 
+// Check get variable and choose content depending on it
 if(isset($_GET['q'])) {
 	$q = $_GET['q'];
 }
-// Choose content depending on get parameter
 switch($q) {
-	// Paper administration
-	case "create_paper": { 
-		$pageAddition = 'Create paper';
-		$page = 'content/create_paper.php';
-	} break;
+	// Paper administration – all users
 	case "read_paper": { 
 		$pageAddition = 'Read paper';
 		$page = 'content/read_paper.php';
 	} break;
+	// Paper administration – logged in user
+	case "create_paper": { 
+		$pageAddition = 'Create paper';
+		$page = 'admin/create_paper.php';
+	} break;
 	case "update_paper": {
 		$pageAddition = 'Update paper';
-		$page = 'content/update_paper.php';
+		$page = 'admin/update_paper.php';
 	} break;
 	case "delete_paper": {
 		$pageAddition = 'Delete paper';
-		$page = 'content/delete_paper.php';
+		$page = 'admin/delete_paper.php';
 	} break;
-	// Supplier administration
+	// Supplier administration – only logged in administrator
 	case "suppliers": {
 		$pageAddition = 'Administrate suppliers';
-		$page = 'content/suppliers.php';
+		$page = 'admin/suppliers.php';
 	} break;
 	case "create_supplier": {
 		$pageAddition = 'Create supplier';
-		$page = 'content/create_supplier.php';
+		$page = 'admin/create_supplier.php';
 	} break;
 	case "update_supplier": {
 		$pageAddition = 'Update supplier';
-		$page = 'content/update_supplier.php';
+		$page = 'admin/update_supplier.php';
 	} break;
 	case "delete_supplier": {
 		$pageAddition = 'Delete supplier';
-		$page = 'content/delete_supplier.php';
+		$page = 'admin/delete_supplier.php';
 	} break;
-	// User administration
+	// User administration – only logged in administrator
 	case "users": {
 		$pageAddition = 'Administrate users';
-		$page = 'content/users.php';
+		$page = 'admin/users.php';
 	} break;
 	case "create_user": {
 		$pageAddition = 'Create user';
-		$page = 'content/create_user.php';
+		$page = 'admin/create_user.php';
 	} break;
 	case "update_user": {
 		$pageAddition = 'Update user';
-		$page = 'content/update_user.php';
+		$page = 'admin/update_user.php';
 	} break;
 	case "delete_user": {
 		$pageAddition = 'Delete user';
-		$page = 'content/delete_user.php';
+		$page = 'admin/delete_user.php';
 	} break;
-	// Other performance
+	// Other performance – all users
 	case "calculate_back": {
 		$pageAddition = 'Calculate back';
 		$page = 'content/calculate_back.php';
 	} break;
 	case "login": {
 		$pageAddition = 'Login';
-		$page = 'content/login.php';
+		$page = 'admin/login.php';
 	} break;
 	case "logout": {
 		$pageAddition = 'Logout';
-		$page = 'content/logout.php';
+		$page = 'admin/logout.php';
 	} break;
-	// Default view
+	// Default view – all users
 	default : { 
 		$pageAddition = 'Administrate paper';
 		$page = 'content/start.php';
@@ -89,7 +89,7 @@ switch($q) {
 }
 
 // Page structure
-include ('inc/header.php');
+include('inc/header.php');
 include($page);
 include('inc/footer.php');
 ?>

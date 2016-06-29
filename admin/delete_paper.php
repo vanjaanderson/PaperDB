@@ -1,8 +1,6 @@
 <?php
-// Check if user is logged in
-if($_SESSION['login']!=='logged_in'):
-	header('Location: ?q=start');
-endif;
+// Only let users with common user privileges access this page
+allow_user_privileges();
 
 $id = 0;
 // Fetch the id from get parameter
@@ -28,13 +26,15 @@ if (!empty($_POST)) {
 		</div>
 		<div class="row">
 			<form class="form-horizontal" action="?q=delete_paper" method="post" role="form">
-				<div class="controls col-sm-12">
-					<input type="hidden" name="id" value="<?=$id;?>" />
+				<div class="form-group">
+					<div class="col-sm-offset-3 col-sm-6">
+						<input type="hidden" name="id" value="<?=$id;?>" />
 					<div class="alert alert-danger" role="alert"><?=BUTTON_DELETE;?> <strong><?=$brand;?> <?=$type;?><?=$grammage;?>?</strong></div>
 				</div>
+				</div>
 				<div class="form-group">
-					<div class="col-sm-offset-2 col-sm-6">
-						<button type="submit" class="btn btn-default"><?=BUTTON_DELETE_YES;?></button>
+					<div class="col-sm-offset-3 col-sm-6">
+						<button type="submit" class="btn btn-success"><?=BUTTON_DELETE_YES;?></button>
 						<a class="btn btn-danger" role="button" href="?q=start"><?=BUTTON_DELETE_NO;?></a>
 					</div>
 				</div>

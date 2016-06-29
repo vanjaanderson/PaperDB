@@ -1,8 +1,6 @@
 <?php
-// Check if user role is administrator
-if($_SESSION['role']!=='administrator'):
-	header('Location: ?q=start');
-endif;
+// Only let users with admin privileges access this page
+allow_admin_privileges();
 
 $name = null;
 
@@ -12,6 +10,9 @@ if ( !empty($_GET['name'])) {
 
 if ( $name === null ) {
 	header('Location:?q=start');
+} else {
+	// Fetch all data from supplier
+	$data = output_from_database('SELECT * FROM supplier WHERE name = ?', "$name");
 }
 
 if (!empty($_POST)) {
@@ -36,27 +37,27 @@ if (!empty($_POST)) {
 		// Redirect to startpage after insertion
 		header('Location:?q=suppliers');
 	}
-} else {
-	$data = output_from_database('SELECT * FROM supplier WHERE name = ?', "$name");
-}
+} 
 ?>
 		<!-- Heading -->
 		<div class="row">
 			<h1 class="text-center empty-row-after"><?=UPDATE_SUPPLIER_TITLE;?> <span class="success_green"><?=$data['name'];?></span> <small><?=CREATE_PAPER_SUB_TITLE;?></small></h1>
 		</div>
-		<form class="form-horizontal" action="?q=update_supplier&amp;name=<?=$name;?>" method="post" role="form">
-			<!-- Supplier, mandatory through select/option value -->
-			<div class="form-group">
-				<label for="value" class="control-label col-sm-2"><?=SUPPLIER_TITLE.MANDATORY;?></label>
-				<div class="controls col-sm-6">
-					<input name="value" class="form-control" placeholder="<?=SUPPLIER_NAME;?>" value="<?=$data['name'];?>" />
+		<div class="row">
+			<form class="form-horizontal" action="?q=update_supplier&amp;name=<?=$name;?>" method="post" role="form">
+				<!-- Supplier, mandatory through select/option value -->
+				<div class="form-group empty-row-after">
+					<label for="value" class="control-label col-sm-3"><?=SUPPLIER_TITLE.MANDATORY;?></label>
+					<div class="controls col-sm-6">
+						<input name="value" class="form-control" placeholder="<?=SUPPLIER_NAME;?>" value="<?=$data['name'];?>" />
+					</div>
 				</div>
-			</div>
-			<!-- Buttons -->
-			<div class="form-group">
-				<div class="col-sm-offset-2 col-sm-6">
-					<button type="submit" class="btn btn-success"><?=BUTTON_UPDATE;?></button>
-					<a class="btn btn-default" role="button" href="?q=suppliers"><?=BUTTON_BACK;?></a>
+				<!-- Buttons -->
+				<div class="form-group">
+					<div class="col-sm-offset-3 col-sm-6">
+						<button type="submit" class="btn btn-success"><?=BUTTON_UPDATE;?></button>
+						<a class="btn btn-info" role="button" href="?q=suppliers"><?=BUTTON_BACK;?></a>
+					</div>
 				</div>
-			</div>
-		</form>
+			</form>
+		</div>

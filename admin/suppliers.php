@@ -1,17 +1,18 @@
 <?php
-// Check if user role is administrator
-if($_SESSION['role']!=='administrator'):
-	header('Location: ?q=start');
-endif;
+// Only let users with admin privileges access this page
+allow_admin_privileges();
 ?>
 		<div class="row">
-			<h1 class="text-center"><?=SUPPLIERS_TITLE;?></h1>
-			<p class="text-center">Suppliers with no activity links are bound to papers and cannot be updated or deleted.</p>
+			<h1 class="text-center empty-row-after"><?=SUPPLIERS_TITLE;?></h1>
+		</div>
+		<div id="button-and-text-row" class="row start-row">
 			<!-- Create button -->
-			<p class="text-right">
-				<a href="?q=create_supplier" class="btn btn-success"><?=BUTTON_CREATE_SUPPLIER;?></a>
-				<a href="?q=start" class="btn btn-info"><?=BUTTON_BACK;?></a>
-				<a href="?q=logout" class="btn btn-default"><?=BUTTON_LOGOUT;?></a>
+			<p class="text-left col-xs-12 col-sm-8">
+			Suppliers with no activity links are bound to papers and cannot be updated or deleted in this view.</p>
+			<p class="text-right col-xs-12 col-sm-4">
+				<a href="?q=create_supplier" class="btn btn-xs btn-success"><?=BUTTON_CREATE_SUPPLIER;?></a>
+				<a href="?q=start" class="btn btn-xs btn-info"><?=BUTTON_BACK;?></a>
+				<a href="?q=logout" class="btn btn-xs btn-default"><?=BUTTON_LOGOUT;?></a>
 			</p>
 		</div>
 		<div class="row">
@@ -36,7 +37,7 @@ $sql2 = 'SELECT name FROM supplier WHERE NOT EXISTS (SELECT supplier FROM paper 
 foreach ($pdo->query($sql) as $row) {
 	echo '<tr>';
 	echo '<td>'.$row['name'].'</td>';
-	echo '<td width="260px">';
+	echo '<td class="activity-column">';
 
 	foreach ($pdo->query($sql2) as $not_used) {
 		if ($row['name']===$not_used['name']) {
