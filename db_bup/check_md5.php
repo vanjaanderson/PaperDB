@@ -3,7 +3,7 @@
 <body>
 
 <?php
-$str = "user";
+$str = "user3";
 echo md5($str);
 ?>  
  

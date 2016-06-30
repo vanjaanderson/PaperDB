@@ -1,11 +1,11 @@
 <?php
 // PHP constants http://php.net/manual/en/language.constants.php
 
-// For security reason, set file priviliges to 640
+// For security reason, set file privileges to 640, or at least 644.
 // -----------------------------------------------
 // User 	(6):  	read, write
 // Group 	(4):  	read
-// Anyone 	(0):  	no priviliges 
+// Anyone 	(0):  	no privileges 
 // -----------------------------------------------
 // In unix/linux: chmod 640 config.php
 // Check with ls -l
@@ -36,10 +36,10 @@ define('BUTTON_DELETE',		'Delete');
 define('BUTTON_CALCULATE_BACK', 'Calculate back');
 define('BUTTON_SAVE',		'Save');
 define('BUTTON_BACK',		'Go back');
+define('MANDATORY_SUB_TITLE', 'mandatory fields marked with &ast;');
 
 // Create Paper
 define('CREATE_PAPER_TITLE','Create paper');
-define('CREATE_PAPER_SUB_TITLE', 'mandatory fields marked with &ast;');
 define('BRAND_TITLE',		'Brand');
 define('BRAND_PLACEHOLDER', 'Type the paper&rsquo;s brand here');
 define('TYPE_TITLE',		'Papertype');
@@ -67,7 +67,7 @@ define('UPDATE_PAPER_TITLE',	'Update paper');
 
 // Calculate back
 define('CALCULATE_BACK_TITLE',	'Calculate width of back with paper: ');
-define('NUMBER_PAGES',			'Number of pages');
+define('NUMBER_PAGES',	'Number of pages');
 define('CALCULATE',	    'Calculate');
 
 // Login page

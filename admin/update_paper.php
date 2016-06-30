@@ -54,7 +54,7 @@ if (!empty($_POST)) {
 ?>
 		<!-- Heading -->
 		<div class="row">
-			<h1 class="text-center empty-row-after"><?=UPDATE_PAPER_TITLE;?> <small><?=CREATE_PAPER_SUB_TITLE;?></small></h1>
+			<h1 class="text-center empty-row-after"><?=UPDATE_PAPER_TITLE;?> <small><?=MANDATORY_SUB_TITLE;?></small></h1>
 		</div>
 		<div class="row">
 			<form class="form-horizontal" action="?q=update_paper&amp;id=<?=$id;?>" method="post" role="form">

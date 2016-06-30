@@ -29,14 +29,14 @@ $sql = 'SELECT * FROM user ORDER BY id ASC';
 // Maybe it would be cleaner code with heredoc: http://php.net/manual/en/language.types.string.php
 foreach ($pdo->query($sql) as $row) {
 	echo '<tr>';
-	echo '<td>'.$row['user'].'</td>';
+	echo '<td>'.$row['name'].'</td>';
 	echo '<td>'.$row['role'].'</td>';
 	// Read link
 	echo '<td class="activity-column">';
 	// Upadate link
-	echo '<a class="btn btn-success btn-xs" role="button" href="?q=update_user&amp;id='.$row['id'].'&amp;user='.$row['user'].'&amp;role='.$row['role'].'">'.BUTTON_UPDATE.'</a> ';
+	echo '<a class="btn btn-success btn-xs" role="button" href="?q=update_user&amp;id='.$row['id'].'&amp;user='.$row['name'].'&amp;role='.$row['role'].'">'.BUTTON_UPDATE.'</a> ';
 	// Delete button
-	echo '<a class="btn btn-danger btn-xs" role="button" href="?q=delete_user&amp;id='.$row['id'].'&amp;user='.$row['user'].'">'.BUTTON_DELETE.'</a> ';
+	echo '<a class="btn btn-danger btn-xs" role="button" href="?q=delete_user&amp;id='.$row['id'].'&amp;user='.$row['name'].'">'.BUTTON_DELETE.'</a> ';
 	echo '</td>';
 	echo '</tr>';
 }

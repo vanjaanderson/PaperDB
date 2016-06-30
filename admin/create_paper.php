@@ -2,6 +2,10 @@
 // Only let users with common user privileges access this page
 allow_user_privileges();
 
+if (!empty($_SESSION['user'])) {
+	$user = $_SESSION['user'];
+}
+
 if (!empty($_POST)) {
     // Keep track post values and sanitize them
 	$brand 			= htmlspecialchars($_POST['brand']);
@@ -33,7 +37,7 @@ if (!empty($_POST)) {
 
 	// Execute database insertion if input is valid
 	if($valid) {		
-		input_to_database('INSERT INTO paper (brand, type, grammage, my, color, supplier) VALUES(?,?,?,?,?,?)', "$brand, $type, $grammage, $my, $color, $supplier");
+		input_to_database('INSERT INTO paper (brand, type, grammage, my, color, supplier, user) VALUES(?,?,?,?,?,?,?)', "$brand, $type, $grammage, $my, $color, $supplier, $user");
 		// Redirect to startpage after insertion
 		header('Location:?q=start');
 	}
@@ -41,7 +45,7 @@ if (!empty($_POST)) {
 ?>
 		<!-- Heading -->
 		<div class="row">
-			<h1 class="text-center empty-row-after"><?=CREATE_PAPER_TITLE;?> <small><?=CREATE_PAPER_SUB_TITLE;?></small></h1>
+			<h1 class="text-center empty-row-after"><?=CREATE_PAPER_TITLE;?> <small><?=MANDATORY_SUB_TITLE;?></small></h1>
 		</div>
 		<div class="row">
 			<form class="form-horizontal" action="?q=create_paper" method="post" role="form">

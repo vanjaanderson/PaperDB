@@ -55,8 +55,7 @@ table user
 +-------+-------------+------+-----+---------+----------------+
 | Field | Type        | Null | Key | Default | Extra          |
 +-------+-------------+------+-----+---------+----------------+
-| id    | int(11)     | NO   | PRI | NULL    | auto_increment |
-| name  | char(6)     | YES  |     | NULL    |                |
+| name  | char(8)     | YES  |     | NULL    |                |
 | pwd   | char(32)    | YES  |     | NULL    |                |
 | role  | varchar(24) | NO   | MUL | user    |                |
 +-------+-------------+------+-----+---------+----------------+
@@ -70,8 +69,9 @@ table paper
 | type     | varchar(45) | NO   | MUL | NULL    |                 |
 | color    | varchar(45) | YES  | MUL |         |                 |
 | supplier | varchar(45) | NO   | MUL | NULL    |                 |
-| grammage | int(4)      | NO   | MUL | NULL    |                 |
+| grammage | int(4)      | NO   |     | NULL    |                 |
 | my       | int(4)      | NO   |     | NULL    |                 |
+| user     | char(8)     | NO   | MUL | NULL    |                 |
 +----------+-------------+------+-----+---------+-----------------+
 </pre>
 

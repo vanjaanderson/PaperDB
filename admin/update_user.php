@@ -56,7 +56,7 @@ if (!empty($_POST)) {
 ?>
 		<!-- Heading -->
 		<div class="row">
-			<h1 class="text-center empty-row-after"><?=UPDATE_USER_TITLE;?> <span class="success_green"><?=($user)?$user:$data['user'];?></span> <small><?=CREATE_PAPER_SUB_TITLE;?></small></h1>
+			<h1 class="text-center empty-row-after"><?=UPDATE_USER_TITLE;?> <span class="success_green"><?=($user)?$user:$data['name'];?></span> <small><?=MANDATORY_SUB_TITLE;?></small></h1>
 		</div>
 		<div class="row">
 			<form class="form-horizontal" action="?q=update_user&amp;id=<?=$id;?>" method="post" role="form">
@@ -64,7 +64,7 @@ if (!empty($_POST)) {
 				<div class="form-group">
 					<label for="user" class="control-label col-sm-3"><?=USER_TITLE.MANDATORY;?></label>
 					<div class="controls col-sm-6">
-						<input name="user" class="form-control" value="<?=($user)?$user:$data['user'];?>" />
+						<input name="user" class="form-control" value="<?=($user)?$user:$data['name'];?>" />
 					</div>
 				</div>
 				<!-- Password -->

@@ -2,34 +2,39 @@
 // Only let users with common user privileges access this page
 allow_user_privileges();
 
-$id = 0;
+// Id variable
+$id = null;
 // Fetch the id from get parameter
 if ( !empty($_GET['id'])) {
 	$id = $_REQUEST['id'];
-	$brand = $_REQUEST['brand'];
-	$type = $_REQUEST['type'];
-	$grammage = $_REQUEST['grammage'];
+}
+// If no request, forward to start page
+if ( $id === null ) {
+	header('Location:?q=start');
+// ... else query the database and save values in $data array
+} else {
+	$data = output_from_database('SELECT * FROM paper WHERE id = ?', "$id");
 }
 
 if (!empty($_POST)) {
 	// Keep track post values
 	$id = $_POST['id'];
 
-	input_to_database('DELETE FROM paper WHERE id=?', $id);
+	input_to_database('DELETE FROM paper WHERE id=?', "$id");
 	// Redirect to startpage
 	header('Location:?q=start');
 }
 ?>
 		<!-- Heading -->
 		<div class="row">
-			<h1 class="text-center empty-row-after"><?=DELETE_PAPER_TITLE;?> <span class="danger_red"><?=$brand;?> <?=$type;?><?=$grammage;?></span></h1>
+			<h1 class="text-center empty-row-after"><?=DELETE_PAPER_TITLE;?> <span class="danger_red"><?=$data['brand'];?> <?=$data['type'];?><?=$data['grammage'];?></span></h1>
 		</div>
 		<div class="row">
 			<form class="form-horizontal" action="?q=delete_paper" method="post" role="form">
 				<div class="form-group">
 					<div class="col-sm-offset-3 col-sm-6">
 						<input type="hidden" name="id" value="<?=$id;?>" />
-					<div class="alert alert-danger" role="alert"><?=BUTTON_DELETE;?> <strong><?=$brand;?> <?=$type;?><?=$grammage;?>?</strong></div>
+					<div class="alert alert-danger" role="alert"><?=BUTTON_DELETE;?> <strong><?=$data['brand'];?> <?=$data['type'];?><?=$data['grammage'];?>?</strong></div>
 				</div>
 				</div>
 				<div class="form-group">

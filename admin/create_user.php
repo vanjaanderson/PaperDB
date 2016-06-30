@@ -4,7 +4,7 @@ allow_admin_privileges();
 
 if (!empty($_POST)) {
     // Keep track post values and sanitize them
-	$user 			= htmlspecialchars($_POST['user']);
+	$name 			= htmlspecialchars($_POST['name']);
 	$pwd 			= md5($_POST['pwd']);
 	$pwd2			= md5($_POST['pwd2']);
 	$role 			= htmlspecialchars($_POST['role']);
@@ -25,7 +25,7 @@ if (!empty($_POST)) {
     }
 	// Execute database insertion if input is valid
 	if($valid) {		
-		input_to_database('INSERT INTO user (user, pwd, role) VALUES(?,?,?)', "$user, $pwd, $role");
+		input_to_database('INSERT INTO user (name, pwd, role) VALUES(?,?,?)', "$name, $pwd, $role");
 		// Redirect to startpage after insertion
 		header('Location:?q=users');
 	}
@@ -33,15 +33,15 @@ if (!empty($_POST)) {
 ?>
 		<!-- Heading -->
 		<div class="row">
-			<h1 class="text-center empty-row-after"><?=CREATE_USER_TITLE;?> <small><?=CREATE_PAPER_SUB_TITLE;?></small></h1>
+			<h1 class="text-center empty-row-after"><?=CREATE_USER_TITLE;?> <small><?=MANDATORY_SUB_TITLE;?></small></h1>
 		</div>
 		<div class="row">
 			<form class="form-horizontal" action="?q=create_user" method="post" role="form">
 				<!-- Name of user, mandatory -->
 				<div class="form-group">
-					<label for="user" class="control-label col-sm-3"><?=USER_TITLE.MANDATORY;?></label>
+					<label for="name" class="control-label col-sm-3"><?=USER_TITLE.MANDATORY;?></label>
 					<div class="controls col-sm-6">
-	                    <input name="user" class="form-control <?=$errorClass;?>" type="text" placeholder="<?=USER_PLACEHOLDER;?>" value="<?=!empty($user)?$user:'';?>" />
+	                    <input name="name" class="form-control <?=$errorClass;?>" type="text" placeholder="<?=USER_PLACEHOLDER;?>" value="<?=!empty($name)?$name:'';?>" />
 					</div>
 				</div>
 				<!-- Password -->

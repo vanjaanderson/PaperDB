@@ -1,5 +1,5 @@
 		<div class="row">
-			<h1 class="text-center empty-row-after"><?=WEB_PAGE_TITLE;?></h1>
+			<h1 class="text-center empty-row-after"><?=WEB_PAGE_TITLE;?> <?php if(!($_SESSION['role'])):?><small>Login with /admin in the URL</small><?php endif;?></h1>
 			<!-- Create button -->
 			<p class="start-row text-right">
 				<!-- User priviliges -->
@@ -42,15 +42,15 @@ foreach ($pdo->query($sql) as $row) {
 	// Read link
 	echo '<td class="activity-column">';
 	echo '<a class="btn btn-warning btn-xs" role="button" href="?q=read_paper&amp;id='.$row['id'].'">'.BUTTON_READ.'</a> ';
-	// Check if user role is Admin or just "user"
-	if(isset($_SESSION['role'])):
+	// Check user name and role, if administrator view all posts, if user only view their own posts
+	if((isset($_SESSION['role']) && $_SESSION['user']===$row['user']) || ($_SESSION['role']==='administrator')):
 	// Update link
 	echo '<a class="btn btn-success btn-xs" role="button" href="?q=update_paper&amp;id='.$row['id'].'">'.BUTTON_UPDATE.'</a> ';
 	// Delete button
-	echo '<a class="btn btn-danger btn-xs" role="button" href="?q=delete_paper&amp;id='.$row['id'].'&amp;brand='.$row['brand'].'&amp;type='.$row['type'].'&amp;grammage='.$row['grammage'].'">'.BUTTON_DELETE.'</a> ';
+	echo '<a class="btn btn-danger btn-xs" role="button" href="?q=delete_paper&amp;id='.$row['id'].'">'.BUTTON_DELETE.'</a> ';
 	endif;
 	// Calculate back button
-	echo '<a class="btn btn-info btn-xs" role="button" href="?q=calculate_back&amp;id='.$row['id'].'&amp;brand='.$row['brand'].'&amp;type='.$row['type'].'&amp;my='.$row['my'].'">'.BUTTON_CALCULATE_BACK.'</a> ';
+	echo '<a class="btn btn-info btn-xs" role="button" href="?q=calculate_back&amp;id='.$row['id'].'">'.BUTTON_CALCULATE_BACK.'</a> ';
 	echo '</td>';
 	echo '</tr>';
 }

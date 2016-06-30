@@ -41,7 +41,7 @@ if (!empty($_POST)) {
 ?>
 		<!-- Heading -->
 		<div class="row">
-			<h1 class="text-center empty-row-after"><?=UPDATE_SUPPLIER_TITLE;?> <span class="success_green"><?=$data['name'];?></span> <small><?=CREATE_PAPER_SUB_TITLE;?></small></h1>
+			<h1 class="text-center empty-row-after"><?=UPDATE_SUPPLIER_TITLE;?> <span class="success_green"><?=$data['name'];?></span> <small><?=MANDATORY_SUB_TITLE;?></small></h1>
 		</div>
 		<div class="row">
 			<form class="form-horizontal" action="?q=update_supplier&amp;name=<?=$name;?>" method="post" role="form">

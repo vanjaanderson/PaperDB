@@ -39,11 +39,10 @@ CREATE TABLE IF NOT EXISTS role (
 
 -- Create users to administrate the db
 CREATE TABLE IF NOT EXISTS user (
-  id int(11) NOT NULL AUTO_INCREMENT,
-  user char(6) NOT NULL,
+  name char(8) NOT NULL,
   pwd char(32) NOT NULL,
   role varchar(24) NOT NULL DEFAULT 'user',
-  PRIMARY KEY (id),
+  PRIMARY KEY (name),
   -- foreign key
   CONSTRAINT user_role_fk FOREIGN KEY (role) REFERENCES role(role)
 ) ENGINE=InnoDB;
@@ -57,10 +56,12 @@ CREATE TABLE IF NOT EXISTS paper (
   supplier varchar(45) NOT NULL,
   grammage int(4) NOT NULL,
   my int(4) NOT NULL,
+  user char(8) NOT NULL,
   PRIMARY KEY (id),
   -- foreign keys
   CONSTRAINT paper_brand_fk FOREIGN KEY (brand) REFERENCES brand(brand),
   CONSTRAINT paper_type_fk FOREIGN KEY (type) REFERENCES type(type),
   CONSTRAINT paper_color_fk FOREIGN KEY (color) REFERENCES color(color),
-  CONSTRAINT paper_supplier_fk FOREIGN KEY (supplier) REFERENCES supplier(name)
+  CONSTRAINT paper_supplier_fk FOREIGN KEY (supplier) REFERENCES supplier(name),
+  CONSTRAINT paper_user_fk FOREIGN KEY (user) REFERENCES user(name)
 ) ENGINE=InnoDB;
