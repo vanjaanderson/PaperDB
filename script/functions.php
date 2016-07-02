@@ -1,10 +1,16 @@
 <?php
 // Function to insert to database
-function input_to_database($sql, $attr) {
+function input_to_database($sql, $attr, $url) {
 	$pdo = CDatabase::connect();
 	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-	$stmt = $pdo->prepare($sql);
-	$stmt->execute(explode(", ",$attr));
+	// Try input and eventually catch exception
+	$caught = false;
+	try { $stmt = $pdo->prepare($sql)->execute(explode(", ",$attr));
+	} catch (PDOException $e) {catch_exception($e, explode(", ",$attr)[0]); $caught = true; }
+	if (!$caught) { // If caught still is false
+		header('Location:'.$url.'');
+	}
+
 	CDatabase::disconnect();
 }
 // Function to fetch values from database
@@ -37,5 +43,13 @@ function allow_admin_privileges() {
 		header('Location: ?q=start');
 	endif;
 }
+// Catch exception (if any)
+function catch_exception($e, $entity) {
+	// Integrity constraint violation: 1062 Duplicate entry.
+	if (strpos($e, '1062') !== false) {
+		echo '<p class="alert alert-danger text-center absolute"> '.$entity.' already exist, try another input</p>';
+	}
+}
+
 ?>
 

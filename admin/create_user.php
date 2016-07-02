@@ -11,7 +11,7 @@ if (!empty($_POST)) {
 	// Check that input is not null
 	// Set class errorfield on fields that does not validate
     $valid = true;
-    if (empty($user)) {
+    if (empty($name)) {
         $valid 		= false;
         $errorClass = 'errorfield';
     }
@@ -24,13 +24,13 @@ if (!empty($_POST)) {
         $pwdClass = 'errorfield';
     }
 	// Execute database insertion if input is valid
+	// Syntax: input_to_database(sql, values, url to redirect to)
 	if($valid) {		
-		input_to_database('INSERT INTO user (name, pwd, role) VALUES(?,?,?)', "$name, $pwd, $role");
-		// Redirect to startpage after insertion
-		header('Location:?q=users');
+		input_to_database('INSERT INTO user (name, pwd, role) VALUES(?,?,?)', "$name, $pwd, $role", '?q=users');
 	}
 }
 ?>
+	<article>
 		<!-- Heading -->
 		<div class="row">
 			<h1 class="text-center empty-row-after"><?=CREATE_USER_TITLE;?> <small><?=MANDATORY_SUB_TITLE;?></small></h1>
@@ -77,3 +77,4 @@ if (!empty($_POST)) {
 				</div>
 			</form>
 		</div>
+	</article>

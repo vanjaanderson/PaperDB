@@ -13,6 +13,7 @@ if ( $id === null ) {
 	$data = output_from_database('SELECT * FROM paper WHERE id = ?', "$id");
 }
 ?>
+	<article>	
 		<!-- Heading -->
 		<div class="row">
 			<h1 class="text-center empty-row-after"><?=READ_PAPER_TITLE;?> <span class="success_green"><?=$data['brand'];?> <?=$data['type'];?><?=$data['grammage'];?></span></h1>
@@ -74,3 +75,4 @@ if ( $id === null ) {
 				</div>
 			</form>
 		</div>
+	</article>

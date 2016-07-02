@@ -1,4 +1,3 @@
-			</article>
 			<footer class="row">
 				<!-- 
 					Set timezone in php.ini for the date object, example (approx. line numbers)

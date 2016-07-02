@@ -39,6 +39,7 @@ if (!empty($_POST)) {
 	}
 } 
 ?>
+	<article>
 		<!-- Heading -->
 		<div class="row">
 			<h1 class="text-center empty-row-after"><?=UPDATE_SUPPLIER_TITLE;?> <span class="success_green"><?=$data['name'];?></span> <small><?=MANDATORY_SUB_TITLE;?></small></h1>
@@ -61,3 +62,4 @@ if (!empty($_POST)) {
 				</div>
 			</form>
 		</div>
+	</article>

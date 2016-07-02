@@ -21,6 +21,7 @@ if ($pages%2 === 1) {
 // Calculate result
 $result = $pages/2*$data['my']/1000;
 ?>
+	<article>
 		<!-- Heading -->
 		<div class="row">
 			<h1 class="text-center empty-row-after"><?=CALCULATE_BACK_TITLE;?> <span class="success_green"><?=$data['brand'];?> <?=$data['type'];?><?=$data['my'];?></span></h1>
@@ -43,3 +44,4 @@ $result = $pages/2*$data['my']/1000;
 				</div>	
 			</form>
 		</div>
+	</article>

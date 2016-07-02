@@ -17,6 +17,7 @@ if (!empty($_POST)) {
 	header('Location:?q=suppliers');
 }
 ?>
+	<article>
 		<!-- Heading -->
 		<div class="row">
 			<h1 class="text-center empty-row-after"><?=DELETE_SUPPLIER_TITLE;?> <span class="danger_red"><?=$name;?></span></h1>
@@ -37,3 +38,4 @@ if (!empty($_POST)) {
 				</div>
 			</form>
 		</div>
+	</article>

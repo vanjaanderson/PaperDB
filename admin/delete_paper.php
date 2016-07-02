@@ -25,6 +25,7 @@ if (!empty($_POST)) {
 	header('Location:?q=start');
 }
 ?>
+	<article>
 		<!-- Heading -->
 		<div class="row">
 			<h1 class="text-center empty-row-after"><?=DELETE_PAPER_TITLE;?> <span class="danger_red"><?=$data['brand'];?> <?=$data['type'];?><?=$data['grammage'];?></span></h1>
@@ -45,3 +46,4 @@ if (!empty($_POST)) {
 				</div>
 			</form>
 		</div>
+	</article>

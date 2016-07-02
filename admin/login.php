@@ -21,7 +21,7 @@ if (isset($_POST['user']) && isset($_POST['pwd'])) {
 }
 ?>
         <!-- Heading -->
-        <div id="login" class="well">
+        <div id="login" class="well container">
             <div class="row">
                 <h1 class="text-center empty-row-after"><?=LOGIN_TITLE;?> <small><?=MANDATORY_SUB_TITLE;?></small></h1>
             </div>

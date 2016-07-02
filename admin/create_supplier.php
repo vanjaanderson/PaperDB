@@ -13,13 +13,13 @@ if (!empty($_POST)) {
         $errorClass = 'errorfield';
     }
 	// Execute database insertion if input is valid
+	// Syntax: input_to_database(sql, values, url to redirect to)
 	if($valid) {		
-		input_to_database('INSERT INTO supplier (name) VALUES(?)', "$name");
-		// Redirect to startpage after insertion
-		header('Location:?q=suppliers');
+		input_to_database('INSERT INTO supplier (name) VALUES(?)', "$name", '?q=suppliers');
 	}
 }
 ?>
+	<article>
 		<!-- Heading -->
 		<div class="row">
 			<h1 class="text-center empty-row-after"><?=CREATE_SUPPLIER_TITLE;?> <small><?=MANDATORY_SUB_TITLE;?></small></h1>
@@ -42,3 +42,4 @@ if (!empty($_POST)) {
 				</div>
 			</form>
 		</div>
+	</article>

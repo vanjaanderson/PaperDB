@@ -1,23 +1,37 @@
+	<article>
 		<div class="row">
 			<h1 class="text-center empty-row-after"><?=WEB_PAGE_TITLE;?> <?php if(!($_SESSION['role'])):?><small>Login with /admin in the URL</small><?php endif;?></h1>
-			<!-- Create button -->
-			<p class="start-row text-right">
+		</div>
+		<div class="row">
+			<div class="col-sm-3">
+				<form action="?q=start" role="search" method="GET">
+					<div class="input-group">
+						<input id="search" name="query" type="text" class="form-control" placeholder="<?=BUTTON_SEARCH;?>" value="<?=isset($_GET['query'])?$_GET['query']:'';?>">
+						<span class="input-group-btn">
+								<button type="submit" class="btn btn-xs btn-default"><strong class="glyphicon glyphicon-search"></strong></button>
+						</span>
+					</div>
+				</form>
+			</div>
+			<div class="col-sm-9 text-right">
+				<!-- Create button -->					
 				<!-- User priviliges -->
 				<?php if(isset($_SESSION['role'])):?>
 					<a href="?q=create_paper" class="btn btn-xs btn-success"><?=BUTTON_CREATE_PAPER;?></a>
-					<!-- Administrator extra priviliges -->
-					<?php if($_SESSION['role']==='administrator'):?>
-						<a href="?q=users" class="btn btn-xs btn-primary"><?=BUTTON_USER;?></a>
-						<a href="?q=suppliers" class="btn btn-xs btn-info"><?=BUTTON_SUPPLIER;?></a>
-					<?php endif;?>
+				<!-- Administrator extra priviliges -->
+				<?php if($_SESSION['role']==='administrator'):?>
+					<a href="?q=users" class="btn btn-xs btn-primary"><?=BUTTON_USER;?></a>
+					<a href="?q=suppliers" class="btn btn-xs btn-info"><?=BUTTON_SUPPLIER;?></a>
+				<?php endif;?>
 					<a href="?q=logout" class="btn btn-xs btn-default"><?=BUTTON_LOGOUT;?></a>
 				<?php else:?>
 					<!-- Login button currently disabled, login with /admin -->
 					<!-- <a href="?q=login" class="btn btn-default"><?=BUTTON_LOGIN;?></a> -->
-				<?php endif;?>
-			</p>
+				<?php endif;?>	
+			</div>
 		</div>
-		<div class="row">
+		<!-- End nav -->
+		<div class="table-responsive empty-row-before">
 			<table class="table table-striped table-bordered">
 				<thead>
 					<tr>
@@ -31,10 +45,26 @@
 <?php 
 // Query database to select all papers
 $pdo = CDatabase::connect();
-$sql = 'SELECT * FROM paper ORDER BY brand ASC';
-// Loop through result.
-// Maybe it would be cleaner code with heredoc: http://php.net/manual/en/language.types.string.php
-foreach ($pdo->query($sql) as $row) {
+$paginator = new CPaginator();
+$sql = "SELECT count(*) FROM paper";
+$paginator->paginate($pdo->query($sql)->fetchColumn());
+// 
+$sql = "SELECT * FROM paper ";
+//
+$query = isset($_GET['query'])?('%'.$_GET['query'].'%'):'%';
+$sql .= "WHERE brand LIKE :query OR type LIKE :query OR supplier LIKE :query OR grammage LIKE :query OR my LIKE :query OR user LIKE :query ";
+//
+$start = (($paginator->get_current_page()-1)*$paginator->itemsPerPage);
+$length = ($paginator->itemsPerPage);
+$sql .= "ORDER BY id ASC limit :start, :length ";
+// Bind parameters
+$stmt = $pdo->prepare($sql);
+$stmt->bindParam(':start',$start,PDO::PARAM_INT);
+$stmt->bindParam(':length',$length,PDO::PARAM_INT);
+$stmt->bindParam(':query',$query,PDO::PARAM_STR);
+$stmt->execute();
+//
+foreach ($stmt->fetchAll(PDO::FETCH_ASSOC) as $row) {
 	echo '<tr>';
 	echo '<td>'.$row['brand'].' '.$row['type'].$row['grammage'].'</td>';
 	echo '<td>'.$row['my'].' &#956;mm</td>';
@@ -58,3 +88,5 @@ CDatabase::disconnect(); ?>
 				</tbody>
 			</table>
 		</div>
+	</article>
+<?=$paginator->page_nav();?>

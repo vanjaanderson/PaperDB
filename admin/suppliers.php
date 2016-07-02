@@ -2,10 +2,11 @@
 // Only let users with admin privileges access this page
 allow_admin_privileges();
 ?>
+	<article>
 		<div class="row">
 			<h1 class="text-center empty-row-after"><?=SUPPLIERS_TITLE;?></h1>
 		</div>
-		<div id="button-and-text-row" class="row start-row">
+		<div class="row start-row button-and-text-row">
 			<!-- Create button -->
 			<p class="text-left col-xs-12 col-sm-8">
 			Suppliers with no activity links are bound to papers and cannot be updated or deleted in this view.</p>
@@ -55,3 +56,4 @@ CDatabase::disconnect();
 				</tbody>
 			</table>
 		</div>
+	</article>

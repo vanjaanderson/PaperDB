@@ -52,6 +52,7 @@ if (!empty($_POST)) {
 	}
 } 
 ?>
+	<article>
 		<!-- Heading -->
 		<div class="row">
 			<h1 class="text-center empty-row-after"><?=UPDATE_PAPER_TITLE;?> <small><?=MANDATORY_SUB_TITLE;?></small></h1>
@@ -109,3 +110,4 @@ if (!empty($_POST)) {
 				</div>
 			</form>
 		</div>
+	</article>

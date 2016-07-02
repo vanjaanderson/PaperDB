@@ -2,19 +2,17 @@
 // Only let users with admin privileges access this page
 allow_admin_privileges();
 
-$id = null;
+$name = null;
 
-if ( !empty($_GET['id'])) {
-	$id = $_REQUEST['id'];
-	$user = $_REQUEST['user'];
-	$role = $_REQUEST['role'];
+if ( !empty($_GET['name'])) {
+	$name = $_REQUEST['name'];
 }
 
 if ( $id === null ) {
 	header('Location:?q=start');
 } else {
 	// Fetch all values from user
-	$data = output_from_database('SELECT * FROM user WHERE id = ?', "$id");
+	$data = output_from_database('SELECT * FROM user WHERE name = ?', "$name");
 }
 
 // Check password values, if changed use posted values otherwise use database values
@@ -48,18 +46,19 @@ if (!empty($_POST)) {
 
 	// Execute database updates if input is valid
 	if($valid) {
-		input_to_database('UPDATE user SET user=?, pwd=?, role=? WHERE id=?', "$user, $pwd, $role, $id");
+		input_to_database('UPDATE user SET name=?, pwd=?, role=? WHERE name=?', "$name, $pwd, $role, $name");
 		// Redirect to startpage after insertion
 		header('Location:?q=users');
 	}
 } 
 ?>
+	<article>
 		<!-- Heading -->
 		<div class="row">
 			<h1 class="text-center empty-row-after"><?=UPDATE_USER_TITLE;?> <span class="success_green"><?=($user)?$user:$data['name'];?></span> <small><?=MANDATORY_SUB_TITLE;?></small></h1>
 		</div>
 		<div class="row">
-			<form class="form-horizontal" action="?q=update_user&amp;id=<?=$id;?>" method="post" role="form">
+			<form class="form-horizontal" action="?q=update_user&amp;id=<?=$name;?>" method="post" role="form">
 				<!-- User -->
 				<div class="form-group">
 					<label for="user" class="control-label col-sm-3"><?=USER_TITLE.MANDATORY;?></label>
@@ -97,3 +96,4 @@ if (!empty($_POST)) {
 				</div>
 			</form>
 		</div>
+	</article>

@@ -37,6 +37,9 @@ define('BUTTON_CALCULATE_BACK', 'Calculate back');
 define('BUTTON_SAVE',		'Save');
 define('BUTTON_BACK',		'Go back');
 define('MANDATORY_SUB_TITLE', 'mandatory fields marked with &ast;');
+define('NAVIGATION_NEXT',	'Next');
+define('NAVIGATION_PREV',	'Prev');
+define('BUTTON_SEARCH',	'Search');
 
 // Create Paper
 define('CREATE_PAPER_TITLE','Create paper');
@@ -78,7 +81,7 @@ define('BUTTON_LOGIN',	'Login');
 define('BUTTON_LOGOUT',	'Logout');
 
 // Administrator features
-define('BUTTON_USER',	'Administrate users');
+define('BUTTON_USER',	'Users');
 define('USERS_TITLE', 	'Administrate users');
 define('CREATE_USER_TITLE', 'Create user');
 define('BUTTON_CREATE_USER', 'Create user');
@@ -91,7 +94,7 @@ define('PASSWORD_AGAIN','Type password again');
 define('UPDATE_USER_TITLE', 'Update user ');
 define('DELETE_USER_TITLE','Delete user ');
 
-define('BUTTON_SUPPLIER','Administrate suppliers');
+define('BUTTON_SUPPLIER','Suppliers');
 define('SUPPLIERS_TITLE', 'Administrate suppliers');
 define('BUTTON_CREATE_SUPPLIER', 'Create supplier');
 define('CREATE_SUPPLIER_TITLE', 'Create supplier');

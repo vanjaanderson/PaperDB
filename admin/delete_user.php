@@ -2,32 +2,32 @@
 // Only let users with admin privileges access this page
 allow_admin_privileges();
 
-$id = 0;
+$name = 0;
 // Fetch the id from get parameter
-if ( !empty($_GET['id'])) {
-	$id = ($_REQUEST['id']);
-	$user = ($_REQUEST['user']);
+if ( !empty($_GET['name'])) {
+	$name = ($_REQUEST['name']);
 }
 
 if (!empty($_POST)) {
 	// Keep track post values
-	$id = $_POST['id'];
+	$name = $_POST['name'];
 
-	input_to_database('DELETE FROM user WHERE id=?', "$id");
+	input_to_database('DELETE FROM user WHERE name=?', "$name");
 	// Redirect to startpage
 	header('Location:?q=users');
 }
 ?>
+	<article>
 		<!-- Heading -->
 		<div class="row">
-			<h1 class="text-center empty-row-after"><?=DELETE_USER_TITLE;?> <span class="danger_red"><?=$user;?></span></h1>
+			<h1 class="text-center empty-row-after"><?=DELETE_USER_TITLE;?> <span class="danger_red"><?=$name;?></span></h1>
 		</div>
 		<div class="row">
 			<form class="form-horizontal" action="" method="post" role="form">
 				<div class="form-group">
 					<div class="controls col-sm-offset-3 col-sm-6">
-						<input type="hidden" name="id" value="<?=$id;?>" />
-					<div class="alert alert-danger" role="alert"><?=BUTTON_DELETE;?> <strong><?=$user;?>?</strong></div>
+						<input type="hidden" name="name" value="<?=$name;?>" />
+					<div class="alert alert-danger" role="alert"><?=BUTTON_DELETE;?> <strong><?=$name;?>?</strong></div>
 				</div>
 				</div>
 				<div class="form-group">
@@ -38,3 +38,4 @@ if (!empty($_POST)) {
 				</div>
 			</form>
 		</div>
+	</article>

@@ -31,4 +31,3 @@
 	</head>
 	<body>
 		<section class="container">
-			<article>
