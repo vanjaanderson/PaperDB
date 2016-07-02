@@ -85,11 +85,11 @@ table paper
 
 ### To-Do
 - Administrate color, brand and type.
-- Paginator for limiting database ouput on each page.
 - Sort columns papername, paper thickness and paper density.
 - Feature for uploading images.
 
 ### Changelog
+- 2016-07-02 – Version 0.4 – Paginator and search-box included in framework.
 - 2016-06-29 – Version 0.3 – Administration interface for creating, updating and deleting users and supplioers.
 - 2016-06-26 – Version 0.2 – Count-back-function
 - 2016-06-22 – Version 0.1 – Developing stage, not yet working version.
