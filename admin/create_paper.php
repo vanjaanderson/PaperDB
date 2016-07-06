@@ -2,6 +2,15 @@
 // Only let users with common user privileges access this page
 allow_user_privileges();
 
+// Define variables
+$src_image = 'uploads/no-image.jpg';
+$brandClass = '';
+$typeClass = '';
+$grammageClass = '';
+$myClass = '';
+$imageError = '';
+
+// Store logged in user (for inserting with the paper)
 if (!empty($_SESSION['user'])) {
 	$user = $_SESSION['user'];
 }
@@ -14,6 +23,9 @@ if (!empty($_POST)) {
 	$my 			= htmlspecialchars($_POST['my']);
 	$color 			= htmlspecialchars($_POST['color']);
 	$supplier 		= htmlspecialchars($_POST['supplier']);
+	// Create an instance of class CUploader
+	$uploader 		= new CUploader();
+	// $papername = $brand.'_'.$type.$grammage;
 
 	// Check that input is not null
 	// Set class errorfield on fields that does not validate
@@ -34,12 +46,24 @@ if (!empty($_POST)) {
         $valid 		= false;
         $myClass 	= 'errorfield';
     }
+    // Check uploaded file
+    if (!empty($_FILES['image']['name']) && !$uploader->valid($_FILES['image'])) {
+    	$valid 		= false;
+    	$imageError = 'Wrong file type!';
+    }
 
 	// Execute database insertion if input is valid
-	if($valid) {		
-		input_to_database('INSERT INTO paper (brand, type, grammage, my, color, supplier, user) VALUES(?,?,?,?,?,?,?)', "$brand, $type, $grammage, $my, $color, $supplier, $user");
-		// Redirect to startpage after insertion
-		header('Location:?q=start');
+	// Syntax: input_to_database(sql, values, url to redirect to)
+	if($valid) {
+		// $image = $uploader->upload($_FILES['image'], $papername);
+		// Save uploaded image or default image in variable image
+		(empty($_FILES['image']['name']))?$image=$src_image:$image=$uploader->upload($_FILES['image']);
+		// Check number of id of highest paper in database (+ 1 for increment)
+		$url = fetch_from_database('SELECT max(id) FROM paper');
+		$id = $url['max(id)'] + 1;
+
+		// Input to database		
+		input_to_database('INSERT INTO paper (id, brand, type, grammage, my, color, supplier, user, image) VALUES(?,?,?,?,?,?,?,?,?)', "$id, $brand, $type, $grammage, $my, $color, $supplier, $user, $image", '?q=read_paper&id='.$id); 
 	}
 }
 ?>
@@ -49,19 +73,20 @@ if (!empty($_POST)) {
 			<h1 class="text-center empty-row-after"><?=CREATE_PAPER_TITLE;?> <small><?=MANDATORY_SUB_TITLE;?></small></h1>
 		</div>
 		<div class="row">
-			<form class="form-horizontal" action="?q=create_paper" method="post" role="form">
-				<!-- Name of paper, mandatory -->
+			<!-- Pay attention to the enctype -->
+			<form class="form-horizontal" action="?q=create_paper" method="post" role="form" enctype="multipart/form-data">
+				<!-- Name of paper, mandatory through select/option value -->
 				<div class="form-group">
 					<label for="brand" class="control-label col-sm-3"><?=BRAND_TITLE.MANDATORY;?></label>
 					<div class="controls col-sm-6">
-	                    <input name="brand" class="form-control <?=$brandClass;?>" type="text" placeholder="<?=BRAND_PLACEHOLDER;?>" value="<?=!empty($brand)?$brand:'';?>" />
+	                    <?php output_query_in_select('brand'); ?>
 					</div>
 				</div>
-				<!-- Paper type, mandatory -->
+				<!-- Paper type, mandatory through select/option value -->
 				<div class="form-group">
 					<label for="type" class="control-label col-sm-3"><?=TYPE_TITLE.MANDATORY;?></label>
 					<div class="controls col-sm-6">
-						<input name="type" class="form-control <?=$typeClass;?>" placeholder="<?=TYPE_PLACEHOLDER;?>" value="<?=!empty($type)?$type:'';?>" />
+						<?php output_query_in_select('type'); ?>
 					</div>
 				</div>
 				<!-- Grammage (paper density), mandatory -->
@@ -82,22 +107,22 @@ if (!empty($_POST)) {
 				<div class="form-group">
 					<label for="color" class="control-label col-sm-3"><?=COLOR_TITLE;?></label>
 					<div class="controls col-sm-6">
-						<input name="color" class="form-control" placeholder="<?=COLOR_PLACEHOLDER;?>" value="<?=!empty($color)?$color:'';?>" />
+						<?php output_query_in_select('color'); ?>
+					</div>
+				</div>
+				<!-- Image uploader -->
+				<div class="form-group">
+					<label for="image" class="control-label col-sm-3"><?=UPLOAD_TITLE;?></label>
+					<div class="controls col-sm-6">
+						<input type="file" name="image" placeholder="File" class="inline" />
+						<span class="text-danger"><?=(isset($imageError))?$imageError:'';?></span>
 					</div>
 				</div>
 				<!-- Supplier, mandatory through select/option value -->
 				<div class="form-group empty-row-after">
-					<label for="supplier" class="control-label col-sm-3"><?=SUPPLIER_TITLE;?></label>
+					<label for="supplier" class="control-label col-sm-3"><?=SUPPLIER_TITLE.MANDATORY;?></label>
 					<div class="controls col-sm-6">
-						<select class="form-control" name="supplier" id="supplier">
-							<!-- Fetch suppliers from database -->
-							<?php $pdo = CDatabase::connect();
-							$sql = 'SELECT * FROM supplier ORDER BY name ASC';
-							foreach ($pdo->query($sql) as $row) {
-								echo '<option value="'.$row['name'].'">'.$row['name'].'</option>';
-							}
-							CDatabase::disconnect(); ?>
-						</select>
+						<?php output_query_in_select('supplier'); ?>
 					</div>
 				</div>
 				<!-- Buttons -->

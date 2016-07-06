@@ -6,6 +6,7 @@ session_start();
 require('db/config.php');
 require('db/CDatabase.php');
 require('db/CPaginator.php');
+require('db/CUploader.php');
 require('script/functions.php'); 
 
 // Page content variables' declarations (to avoid warnings and notices, depending on web-server's preferences)

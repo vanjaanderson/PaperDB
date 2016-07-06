@@ -6,7 +6,7 @@ allow_admin_privileges();
 		<div class="row">
 			<h1 class="text-center empty-row-after"><?=USERS_TITLE;?></h1>
 		</div>
-		<div class="row start-row button-and-text-row">
+		<div class="row">
 			<!-- Create button -->
 			<p class="text-left col-xs-12 col-sm-8">
 			Users with no activity links are bound to papers and cannot be updated or deleted in this view.</p>
@@ -16,16 +16,15 @@ allow_admin_privileges();
 				<a href="?q=logout" class="btn btn-xs btn-default"><?=BUTTON_LOGOUT;?></a>
 			</p>
 		</div>
-		<div class="row">
-			<table class="table table-striped table-bordered">
-				<thead>
-					<tr>
-						<th><?=USERNAME;?></th>
-						<th><?=USER_ROLE;?></th>
-						<th><?=ACTIVITY;?></th>
-					</tr>
-				</thead>
-				<tbody>
+		<table class="table table-striped table-bordered">
+			<thead>
+				<tr>
+					<th><?=USERNAME;?></th>
+					<th><?=USER_ROLE;?></th>
+					<th><?=ACTIVITY;?></th>
+				</tr>
+			</thead>
+			<tbody>
 <?php
 // Query database to select all papers
 $pdo = CDatabase::connect();
@@ -40,7 +39,7 @@ foreach ($pdo->query($sql) as $row) {
 	echo '<td>'.$row['role'].'</td>';
 	// Read link
 	echo '<td class="activity-column">';
-	// Upadate link
+	// Update link
 	foreach ($pdo->query($sql2) as $not_used) {
 		if ($row['name']===$not_used['name']) {
 			echo '<a class="btn btn-success btn-xs" role="button" href="?q=update_user&amp;name='.$row['name'].'">'.BUTTON_UPDATE.'</a> ';

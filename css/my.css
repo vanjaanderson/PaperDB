@@ -3,7 +3,7 @@
 	padding-bottom: 12px;
 }
 .empty-row-before {
-  padding-top: 12px;
+  margin-top: 12px;
 }
 .no-space-after {
   margin-bottom: 0 !important;
@@ -22,6 +22,12 @@
 }
 .small-width {
 	width: 64px;
+}
+.inline {
+  display: inline;
+}
+.thumb {
+  max-height: 20px;
 }
 article {
   min-height: 566px;
@@ -61,13 +67,6 @@ article {
   padding: 15px;
   margin: 0 auto;
 }
-.form-signin .form-signin-heading,
-.form-signin .checkbox {
-  margin-bottom: 10px;
-}
-.form-signin .checkbox {
-  font-weight: normal;
-}
 .form-signin .form-control {
   position: relative;
   height: auto;
@@ -77,10 +76,7 @@ article {
   padding: 10px;
   font-size: 16px;
 }
-.form-signin .form-control:focus {
-  z-index: 2;
-}
-.form-signin input[type="email"] {
+.form-signin input[type="text"] {
   margin-bottom: -1px;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
@@ -93,7 +89,7 @@ article {
 
 /* Paginator */
 #paginator {
-  margin: -8px 0px 12px 0px !important;
+  margin: -8px 0px 12px 0px;
 }
 
 /* Bootstrap colors */

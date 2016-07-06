@@ -2,6 +2,10 @@
 // Only let users with admin privileges access this page
 allow_admin_privileges();
 
+// Define error variables
+$errorClass = '';
+$pwdClass = '';
+
 if (!empty($_POST)) {
     // Keep track post values and sanitize them
 	$name 			= htmlspecialchars($_POST['name']);

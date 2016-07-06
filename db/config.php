@@ -18,6 +18,9 @@ define('DB_HOST', 	'localhost');
 define('DB_USER', 	'root');
 define('DB_PWD', 	'');
 
+// Uploads folder (should be moved outside your web root). Make sure the folder is readable, chmod 755 or 775.
+define('UPLOADS_FOLDER', 'uploads/');
+
 // Define your document root
 define('DOCUMENT_ROOT', '/PaperDB');
 
@@ -39,7 +42,7 @@ define('BUTTON_BACK',		'Go back');
 define('MANDATORY_SUB_TITLE', 'mandatory fields marked with &ast;');
 define('NAVIGATION_NEXT',	'Next');
 define('NAVIGATION_PREV',	'Prev');
-define('BUTTON_SEARCH',	'Search');
+define('BUTTON_SEARCH',		'Search');
 
 // Create Paper
 define('CREATE_PAPER_TITLE','Create paper');
@@ -52,6 +55,8 @@ define('GRAMMAGE_PLACEHOLDER', 'Density of the paper (g/m&#178;)');
 define('MY_TITLE',			'My-value');
 define('MY_PLACEHOLDER', 	'Paper thickness (&#956;mm)');
 define('COLOR_TITLE',		'Color');
+define('UPLOAD_TITLE',		'Upload image (GIF, JPG or PNG)');
+define('IMAGE_TITLE',		'Image');
 define('COLOR_PLACEHOLDER', 'Color of the paper');
 define('SUPPLIER_TITLE',	'Supplier');
 define('SUPPLIER_DEFAULT', 	'Antalis');
@@ -59,6 +64,7 @@ define('MANDATORY', 		'&#8201;&ast;');
 
 // Read Paper
 define('READ_PAPER_TITLE', 	'Read record: ');
+define('CREATED_BY',		'Created by');
 
 // Delete Paper
 define('DELETE_PAPER_TITLE','Delete paper: ');
@@ -66,41 +72,42 @@ define('BUTTON_DELETE_YES',	'Yes, delete');
 define('BUTTON_DELETE_NO',	'No, I changed my mind');
 
 // Update paper
-define('UPDATE_PAPER_TITLE',	'Update paper');
+define('UPDATE_PAPER_TITLE','Update paper');
+define('REMOVE_IMAGE',		'Remove image');
 
 // Calculate back
-define('CALCULATE_BACK_TITLE',	'Calculate width of back with paper: ');
-define('NUMBER_PAGES',	'Number of pages');
-define('CALCULATE',	    'Calculate');
+define('CALCULATE_BACK_TITLE', 'Calculate width of back with paper: ');
+define('NUMBER_PAGES',		'Number of pages');
+define('CALCULATE',	    	'Calculate');
 
 // Login page
-define('LOGIN_TITLE', 	'Login');
-define('USERNAME',		'Username');
-define('PASSWORD',		'Password');
-define('BUTTON_LOGIN',	'Login');
-define('BUTTON_LOGOUT',	'Logout');
+define('LOGIN_TITLE', 		'Login');
+define('USERNAME',			'Username');
+define('PASSWORD',			'Password');
+define('BUTTON_LOGIN',		'Login');
+define('BUTTON_LOGOUT',		'Logout');
 
 // Administrator features
-define('BUTTON_USER',	'Users');
-define('USERS_TITLE', 	'Administrate users');
+define('BUTTON_USER',		'Users');
+define('USERS_TITLE', 		'Administrate users');
 define('CREATE_USER_TITLE', 'Create user');
-define('BUTTON_CREATE_USER', 'Create user');
-define('USER_ROLE',		'User privileges role');
-define('USER_TITLE',	'Username');
-define('USER_PLACEHOLDER', 'Username');
-define('PASSWORD_TITLE','Password');
+define('BUTTON_CREATE_USER','Create user');
+define('USER_ROLE',			'User privileges role');
+define('USER_TITLE',		'Username');
+define('USER_PLACEHOLDER', 	'Username');
+define('PASSWORD_TITLE',	'Password');
 define('NEW_PASSWORD_TITLE','New password');
-define('PASSWORD_AGAIN','Type password again');
+define('PASSWORD_AGAIN',	'Type password again');
 define('UPDATE_USER_TITLE', 'Update user ');
-define('DELETE_USER_TITLE','Delete user ');
+define('DELETE_USER_TITLE',	'Delete user ');
 
-define('BUTTON_SUPPLIER','Suppliers');
-define('SUPPLIERS_TITLE', 'Administrate suppliers');
+define('BUTTON_SUPPLIER',	'Suppliers');
+define('SUPPLIERS_TITLE', 	'Administrate suppliers');
 define('BUTTON_CREATE_SUPPLIER', 'Create supplier');
 define('CREATE_SUPPLIER_TITLE', 'Create supplier');
-define('SUPPLIER_NAME', 'Supplier name');
+define('SUPPLIER_NAME', 	'Supplier name');
 define('SUPPLIER_PLACEHOLDER', 'Supplier name');
 define('UPDATE_SUPPLIER_TITLE', 'Update supplier ');
-define('DELETE_SUPPLIER_TITLE','Delete supplier ');
+define('DELETE_SUPPLIER_TITLE', 'Delete supplier ');
 
 ?>

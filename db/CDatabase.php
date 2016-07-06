@@ -22,7 +22,7 @@ class CDatabase {
 			}
 			// Throw exception if connection fails
 			catch(PDOException $e) {
-				echo 'ERROR: ' . $e->getMessage();
+				echo 'Connection failed: ' . $e->getMessage();
 			}
 		}
 		return self::$count;

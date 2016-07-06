@@ -2,20 +2,23 @@
 // Only let users with admin privileges access this page
 allow_admin_privileges();
 
+// Define error variables
+$errorClass = '';
+
 if (!empty($_POST)) {
     // Keep track post values and sanitize them
-	$name 			= htmlspecialchars($_POST['name']);
+	$supplier 			= htmlspecialchars($_POST['supplier']);
 	// Check that input is not null
 	// Set class errorfield on fields that does not validate
     $valid = true;
-    if (empty($name)) {
+    if (empty($supplier)) {
         $valid 		= false;
         $errorClass = 'errorfield';
     }
 	// Execute database insertion if input is valid
 	// Syntax: input_to_database(sql, values, url to redirect to)
 	if($valid) {		
-		input_to_database('INSERT INTO supplier (name) VALUES(?)', "$name", '?q=suppliers');
+		input_to_database('INSERT INTO supplier (supplier) VALUES(?)', "$supplier", '?q=suppliers');
 	}
 }
 ?>
@@ -28,9 +31,9 @@ if (!empty($_POST)) {
 			<form class="form-horizontal" action="?q=create_supplier" method="post" role="form">
 				<!-- Name of paper, mandatory -->
 				<div class="form-group empty-row-after">
-					<label for="name" class="control-label col-sm-3"><?=SUPPLIER_TITLE.MANDATORY;?></label>
+					<label for="supplier" class="control-label col-sm-3"><?=SUPPLIER_TITLE.MANDATORY;?></label>
 					<div class="controls col-sm-6">
-	                    <input name="name" class="form-control <?=$errorClass;?>" type="text" placeholder="<?=SUPPLIER_PLACEHOLDER;?>" value="<?=!empty($name)?$name:'';?>" />
+	                    <input name="supplier" class="form-control <?=$errorClass;?>" type="text" placeholder="<?=SUPPLIER_PLACEHOLDER;?>" value="<?=!empty($supplier)?$supplier:'';?>" />
 					</div>
 				</div>
 				<!-- Buttons -->

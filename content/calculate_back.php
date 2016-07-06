@@ -15,6 +15,7 @@ if ( $id === null ) {
 // Define default value for paper
 $pages = !empty($_POST['pages'])?$_POST['pages']:100;
 // Make number of pages even (i.e. if number is odd, add one to make it even)
+$pages = intval($pages);
 if ($pages%2 === 1) {
 	$pages += 1;
 }

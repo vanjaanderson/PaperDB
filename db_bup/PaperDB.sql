@@ -27,8 +27,8 @@ CREATE TABLE IF NOT EXISTS color (
 
 -- Create supplier table
 CREATE TABLE IF NOT EXISTS supplier (
-  name varchar(45) NOT NULL,
-  PRIMARY KEY (name)
+  supplier varchar(45) NOT NULL,
+  PRIMARY KEY (supplier)
 ) ENGINE=InnoDB;
 
 -- Create roles for the users
@@ -57,11 +57,12 @@ CREATE TABLE IF NOT EXISTS paper (
   grammage int(4) NOT NULL,
   my int(4) NOT NULL,
   user char(8) NOT NULL,
+  image varchar(255) DEFAULT 'uploads/no-image.jpg',
   PRIMARY KEY (id),
   -- foreign keys
   CONSTRAINT paper_brand_fk FOREIGN KEY (brand) REFERENCES brand(brand),
   CONSTRAINT paper_type_fk FOREIGN KEY (type) REFERENCES type(type),
   CONSTRAINT paper_color_fk FOREIGN KEY (color) REFERENCES color(color),
-  CONSTRAINT paper_supplier_fk FOREIGN KEY (supplier) REFERENCES supplier(name),
+  CONSTRAINT paper_supplier_fk FOREIGN KEY (supplier) REFERENCES supplier(supplier),
   CONSTRAINT paper_user_fk FOREIGN KEY (user) REFERENCES user(name)
 ) ENGINE=InnoDB;
