@@ -91,8 +91,7 @@ table paper
 - Delete multiple records with checkboxes, in administrator mode.
 
 ### Changelog
-- 2016-07-07 – Version 0.6 – File upload is improved. Now images does not "disappear" when updating only text data.
-- 2016-07-05 – Version 0.5 – File upload is implemented. See comments above (move uploads folder and change settings).  
+- 2016-07-07 – Version 0.5 – File upload is implemented. See comments above (move uploads folder and change settings).  
 - 2016-07-02 – Version 0.4 – Paginator and search-box included in framework.
 - 2016-06-29 – Version 0.3 – Administration interface for creating, updating and deleting users and suppliers.
 - 2016-06-26 – Version 0.2 – Count-back-function.
