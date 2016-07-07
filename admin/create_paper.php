@@ -25,7 +25,7 @@ if (!empty($_POST)) {
 	$supplier 		= htmlspecialchars($_POST['supplier']);
 	// Create an instance of class CUploader
 	$uploader 		= new CUploader();
-	// $papername = $brand.'_'.$type.$grammage;
+	$papername = $brand.'_'.$type.$grammage;
 
 	// Check that input is not null
 	// Set class errorfield on fields that does not validate
@@ -49,15 +49,14 @@ if (!empty($_POST)) {
     // Check uploaded file
     if (!empty($_FILES['image']['name']) && !$uploader->valid($_FILES['image'])) {
     	$valid 		= false;
-    	$imageError = 'Wrong file type!';
+    	$imageError = 'Wrong file type! Please select a GIF, JPG or PNG file.';
     }
 
 	// Execute database insertion if input is valid
 	// Syntax: input_to_database(sql, values, url to redirect to)
 	if($valid) {
-		// $image = $uploader->upload($_FILES['image'], $papername);
 		// Save uploaded image or default image in variable image
-		(empty($_FILES['image']['name']))?$image=$src_image:$image=$uploader->upload($_FILES['image']);
+		(empty($_FILES['image']['name']))?$image=$src_image:$image=$uploader->upload($_FILES['image'], $papername);
 		// Check number of id of highest paper in database (+ 1 for increment)
 		$url = fetch_from_database('SELECT max(id) FROM paper');
 		$id = $url['max(id)'] + 1;
@@ -114,8 +113,8 @@ if (!empty($_POST)) {
 				<div class="form-group">
 					<label for="image" class="control-label col-sm-3"><?=UPLOAD_TITLE;?></label>
 					<div class="controls col-sm-6">
-						<input type="file" name="image" placeholder="File" class="inline" />
-						<span class="text-danger"><?=(isset($imageError))?$imageError:'';?></span>
+						<input type="file" name="image" placeholder="File" />
+						<p class="text-danger"><?=(isset($imageError))?$imageError:'';?></p>
 					</div>
 				</div>
 				<!-- Supplier, mandatory through select/option value -->

@@ -6,10 +6,10 @@ INSERT INTO brand (brand) VALUES
 	('Digigreen'), 
 	('Edixion'), 
 	('Elfenbenskartong'), 
-	('GalerieArt'), 
+	('GalerieArt&trade;'), 
 	('Incada'), 
 	('Invercote'), 
-	('Mohawk'), 
+	('Mohawk Superfine'), 
 	('NatureWoven'), 
 	('Olin'), 
 	('Pioneer'), 
@@ -18,7 +18,7 @@ INSERT INTO brand (brand) VALUES
 	('Scandia 2000'), 
 	('Svenskt Arkiv'), 
 	('Sweden Bond'), 
-	('Tom&Otto'), 
+	('Tom&amp;Otto'), 
 	('UPM Sol'), 
 	('Venicelux'), 
 	('Venoplex'), 
@@ -33,14 +33,13 @@ INSERT INTO type (type) VALUES
 	('Silk'),
 	('Print'),
 	('Gloss'),
-	('Laser'),
-	('Laser Preprint'),
+	('Laser Pre-Print'),
 	('Bulk (Volume)'),
 	('Matt'),
 	('Albato'),
 	('Creato'),
 	('G'),
-	('G Linnépräglad'),
+	('G Linnepräglad'),
 	('Superfine'),
 	('Chorus Jute'),
 	('Gossyp'),
@@ -50,18 +49,23 @@ INSERT INTO type (type) VALUES
 	('Digital'),
 	('Backlit'),
 	('Classic'),
-	('Supercristal'),
+	('Supercristal+'),
 	('Smooth'),
-	('liksidig'),
-	('Duo'
+	('Liksidig'),
+	('Duo'),
+	('Eggshell/matt'),
+	('Smooth/slät'),
+	('(f.d. Lessebo Linn&eacute;)'),
+	('Single Matt'
 );
 
 -- Insert color
 INSERT INTO color (color) VALUES
 	(' '),
-	('White/Vit'),
+	('Vit/White'),
 	('Gultonat/Ivory'),
-	('Natur'
+	('Naturvit/Natural'),
+	('White'
 );
 
 -- Insert supplier
@@ -134,6 +138,63 @@ INSERT INTO paper (brand, type, grammage, my, color, supplier, user, image) VALU
 INSERT INTO role (role) VALUES
 	('administrator'),
 	('user'
+);
+
+-- Insert brandtype
+INSERT INTO brandtype (brand, type) VALUES
+	('Cocoon', 'Offset'),
+	('Cocoon', 'PrePrint'),
+	('Cocoon', 'Silk'),
+	('Cyclus', 'Offset'),
+	('Cyclus', 'Print'),
+	('Digigreen', 'Gloss'),
+	('Digigreen', 'Silk'),
+	('Edixion', 'Laser Pre-Print'),
+	('Edixion', 'Offset'),
+	('Elfenbenskartong', ''),
+	('GalerieArt&trade;', 'Bulk (Volume)'),
+	('GalerieArt&trade;', 'Gloss'),
+	('GalerieArt&trade;', 'Matt'),
+	('GalerieArt&trade;', 'Silk'),
+	('Incada', 'Silk'),
+	('Invercote', 'Albato'),
+	('Invercote', 'Creato'),
+	('Invercote', 'G'),
+	('Invercote', 'G Linnepräglad'),
+	('Mohawk Superfine', 'Eggshell/matt'),
+	('Mohawk Superfine', 'Smooth/slät'),
+	('NatureWoven', 'Chorus Jute'),
+	('NatureWoven', 'Gossyp'),
+	('Olin', 'Rough Absolute'),
+	('Olin', 'Rough High'),
+	('Pioneer', 'Pre-Print'),
+	('Polyart', ' '),
+	('Polyart', 'Digital'),
+	('Priplak', 'Backlit'),
+	('Priplak', 'Classic'),
+	('Priplak', 'Supercristal+'),
+	('Scandia2000', ' '),
+	('Scandia2000', '(f.d. Lessebo Linn&eacute;)'),
+	('Scandia2000', 'Smooth'),
+	('Svenskt Arkiv', ' '),
+	('Sweden Bond', ' '),
+	('Tom&amp;Otto','Gloss'),
+	('Tom&amp;Otto','Silk'),
+	('Tom&amp;Otto','Single Matt'),
+	('UPM Sol', 'Gloss'),
+	('UPM Sol', 'Matt'),
+	('Venicelux', ' '),
+	('Venicelux', 'Liksidig'),
+	('Venoplex', ' '),
+	('White Duo' ,' '
+);
+
+-- Insert brandcolor
+INSERT INTO brandcolor (brand, color) VALUES
+	('Scandia2000', 'Gultonat/Ivory'),
+	('Scandia2000', 'Naturvit/Natural'),
+	('Scandia2000', 'Vit/White'),
+	('Olin', 'White'
 );
 
 -- Insert user

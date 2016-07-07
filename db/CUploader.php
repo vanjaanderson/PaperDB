@@ -5,9 +5,9 @@ class CUploader {
 		IMAGETYPE_GIF, IMAGETYPE_JPEG, IMAGETYPE_PNG
 	);
 	// Upload image and change name to papername
-	public  function upload($file) {
-		// $extension = pathinfo($file['name'],PATHINFO_EXTENSION);
-		// $file['name'] = $papername.'.'.$extension;
+	public  function upload($file, $papername) {
+		$extension = pathinfo($file['name'],PATHINFO_EXTENSION);
+		$file['name'] = $papername.'.'.$extension;
 		$return_file_path = '';
 		//
 		if (!$file['error']) {

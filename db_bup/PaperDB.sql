@@ -47,6 +47,26 @@ CREATE TABLE IF NOT EXISTS user (
   CONSTRAINT user_role_fk FOREIGN KEY (role) REFERENCES role(role)
 ) ENGINE=InnoDB;
 
+-- Create brandtype which lists types for all brands
+CREATE TABLE IF NOT EXISTS brandtype (
+  brand varchar(45) NOT NULL,
+  type varchar(45) NOT NULL,
+  PRIMARY KEY (brand, type),
+  -- foreign keys
+  CONSTRAINT brandtype_brand_fk FOREIGN KEY (brand) REFERENCES brand(brand),
+  CONSTRAINT brandtype_type_fk FOREIGN KEY (type) REFERENCES type(type)
+) ENGINE=InnoDB;
+
+-- Create brandcolor which lists colors
+CREATE TABLE IF NOT EXISTS brandcolor (
+  brand varchar(45) NOT NULL,
+  color varchar(45) NOT NULL,
+  PRIMARY KEY (brand, color),
+  -- foreign keys
+  CONSTRAINT brandcolor_brand_fk FOREIGN KEY (brand) REFERENCES brand(brand),
+  CONSTRAINT brandcolor_color_fk FOREIGN KEY (color) REFERENCES color(color)
+) ENGINE=InnoDB;
+
 -- Create paper table
 CREATE TABLE IF NOT EXISTS paper (
   id int(11) NOT NULL AUTO_INCREMENT,

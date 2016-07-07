@@ -8,6 +8,7 @@ $brandClass = '';
 $typeClass 	= '';
 $grammageClass	= '';
 $myClass 	= '';
+$imageError = '';
 
 if ( !empty($_GET['id'])) {
 	$id = $_REQUEST['id'];
@@ -34,7 +35,7 @@ if (!empty($_POST)) {
 	$image 			= $_POST['image'];
 	// Create an instance of class CUploader
 	$uploader 		= new CUploader();
-	// $papername = $brand.' '.$type.$grammage;
+	$papername = $brand.'_'.$type.$grammage;
 
 	// Check that input is not null
 	// Set class errorfield on fields that does not validate
@@ -59,11 +60,12 @@ if (!empty($_POST)) {
     // Check uploaded file
     if (!empty($_FILES['image']['name']) && !$uploader->valid($_FILES['image'])) {
     	$valid 		= false;
+    	$imageError = 'Wrong file type! Please select a GIF, JPG or PNG file.';
     }
 	// Execute database updates if input is valid
 	if($valid) {
 		// Save uploaded image or default image in variable image
-		(empty($_FILES['image']['name']))?$image=$src_image:$image=$uploader->upload($_FILES['image']);
+		(empty($_FILES['image']['name']))?$image=$src_image:$image=$uploader->upload($_FILES['image'], $papername);
 		// Insert into database
 		input_to_database('UPDATE paper SET brand=?, type=?, grammage=?, my=?, color=?, supplier=?, image=? WHERE id=?', "$brand, $type, $grammage, $my, $color, $supplier, $image, $id", '?q=read_paper&id='.$id);
 	}
@@ -120,6 +122,7 @@ if (!empty($_POST)) {
 						<div class="controls col-sm-6">
 							<input type="file" name="image" placeholder="File" />
 							<input type="hidden" name="image" value="<?=$image;?>" />
+							<p class="text-danger"><?=(isset($imageError))?$imageError:'';?></p>
 						</div>
 					</div>
 				<!-- Supplier, mandatory through select/option value -->

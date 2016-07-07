@@ -41,6 +41,7 @@ function output_query_in_select($index) {
 	CDatabase::disconnect();
 	echo '</select>';
 }			
+
 // Check for user with common user privileges
 function allow_user_privileges() {
 	if(!$_SESSION['role']):
